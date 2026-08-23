@@ -7,6 +7,7 @@
   <meta name="description"
     content="Hridayanshu Raj Acharya: AI/ML engineer building RAG pipelines, autonomous agents, and production ML systems." />
   <title>Hridayanshu Raj Acharya | AI/ML Engineer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -27,6 +28,7 @@
         <li><a href="#projects" class="nav-link">work</a></li>
         <li><a href="#certifications" class="nav-link">certs</a></li>
         <li><a href="#contact" class="nav-link">contact</a></li>
+        <li><a href="resume.pdf" download="Hridayanshu_Raj_Acharya_Resume.pdf" class="nav-link">resume</a></li>
       </ul>
       <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
         <span></span><span></span><span></span>
@@ -38,6 +40,10 @@
   <aside class="sidebar">
     <div class="sidebar-top">
       <a href="#home" class="nav-logo sidebar-logo" id="sidebar-logo-link">hridayanshu<span class="cursor">_</span></a>
+      <button type="button" class="cmdk-hint" id="cmdk-trigger" aria-label="Open command palette">
+        <span>jump to...</span>
+        <kbd>/</kbd>
+      </button>
       <p class="sidebar-label">portfolio/</p>
       <ul class="nav-links sidebar-links">
         <li><a href="#about" class="nav-link">about.md</a></li>
@@ -46,6 +52,17 @@
         <li><a href="#certifications" class="nav-link">certs.log</a></li>
         <li><a href="#contact" class="nav-link">contact.sh</a></li>
       </ul>
+      <!-- Drop your resume file at this path, e.g. resume.pdf next to index.html -->
+      <a href="resume.pdf" download="Hridayanshu_Raj_Acharya_Resume.pdf" class="nav-link resume-link"
+        id="sidebar-resume-link">
+        <span>resume.pdf</span>
+        <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12" />
+          <path d="M7 10l5 5 5-5" />
+          <path d="M5 21h14" />
+        </svg>
+      </a>
     </div>
     <div class="sidebar-bottom">
       <div class="sidebar-socials">
@@ -81,6 +98,7 @@
 
     <!-- ========== HERO ========== -->
     <section id="home" class="hero">
+      <canvas id="hero-bg-canvas" class="hero-bg-canvas" aria-hidden="true"></canvas>
       <div class="terminal">
         <div class="terminal-bar">
           <span class="terminal-path">~/hridayanshu/profile.md</span>
@@ -156,15 +174,15 @@
             </p>
             <div class="about-stats">
               <div class="stat">
-                <span class="stat-num">3.92</span>
+                <span class="stat-num" data-target="3.92" data-decimals="2">0</span>
                 <span class="stat-label">cgpa / 4.0</span>
               </div>
               <div class="stat">
-                <span class="stat-num">10</span>
+                <span class="stat-num" data-target="10" data-decimals="0">0</span>
                 <span class="stat-label">projects shipped</span>
               </div>
               <div class="stat">
-                <span class="stat-num">4</span>
+                <span class="stat-num" data-target="4" data-decimals="0">0</span>
                 <span class="stat-label">hackathons</span>
               </div>
             </div>
@@ -288,9 +306,14 @@
                 on Oracle Cloud with Tailscale, backed by a React Native and Expo client.
               </p>
               <div class="log-tags">
-                <span class="ptag">FastAPI</span><span class="ptag">LangChain</span><span class="ptag">ChromaDB</span>
-                <span class="ptag">Gemini Flash</span><span class="ptag">React Native</span><span
-                  class="ptag">RAG</span><span class="ptag">SQLAlchemy</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/fastapi/4A5560" alt="" width="13" height="13"
+                    loading="lazy">FastAPI</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/sqlalchemy/4A5560" alt="" width="13"
+                    height="13" loading="lazy">SQLAlchemy</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
+                    loading="lazy">React Native</span>
+                <span class="ptag">LangChain</span><span class="ptag">ChromaDB</span><span class="ptag">Gemini
+                  Flash</span><span class="ptag">RAG</span>
               </div>
             </div>
           </article>
@@ -322,8 +345,11 @@
                 during moderation.
               </p>
               <div class="log-tags">
-                <span class="ptag">XLM-RoBERTa</span><span class="ptag">OpenAI Whisper</span><span
-                  class="ptag">PyTorch</span><span class="ptag">NLP</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/pytorch/4A5560" alt="" width="13" height="13"
+                    loading="lazy">PyTorch</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/openai/4A5560" alt="" width="13" height="13"
+                    loading="lazy">OpenAI Whisper</span>
+                <span class="ptag">XLM-RoBERTa</span><span class="ptag">NLP</span>
               </div>
             </div>
           </article>
@@ -353,8 +379,9 @@
                 system designed to coordinate patrol routing and cut response times.
               </p>
               <div class="log-tags">
-                <span class="ptag">Random Forest</span><span class="ptag">GNN</span><span class="ptag">MARL</span><span
-                  class="ptag">PyTorch</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/pytorch/4A5560" alt="" width="13" height="13"
+                    loading="lazy">PyTorch</span>
+                <span class="ptag">Random Forest</span><span class="ptag">GNN</span><span class="ptag">MARL</span>
               </div>
             </div>
           </article>
@@ -418,8 +445,11 @@
                 offline exams.
               </p>
               <div class="log-tags">
-                <span class="ptag">YOLO</span><span class="ptag">OpenCV</span><span class="ptag">Computer
-                  Vision</span><span class="ptag">React.js</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/opencv/4A5560" alt="" width="13" height="13"
+                    loading="lazy">OpenCV</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
+                    loading="lazy">React.js</span>
+                <span class="ptag">YOLO</span><span class="ptag">Computer Vision</span>
               </div>
             </div>
           </article>
@@ -477,8 +507,16 @@
                 University social platform with real-time messaging (Socket.io), event hubs, and
                 interest-based networking, plus a personalized feed and Cloudinary and JWT auth.
               </p>
-              <div class="log-tags"><span class="ptag">React</span><span class="ptag">Node.js</span><span
-                  class="ptag">MongoDB</span><span class="ptag">Socket.io</span></div>
+              <div class="log-tags">
+                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
+                    loading="lazy">React</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/nodedotjs/4A5560" alt="" width="13" height="13"
+                    loading="lazy">Node.js</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/mongodb/4A5560" alt="" width="13" height="13"
+                    loading="lazy">MongoDB</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/socketdotio/4A5560" alt="" width="13"
+                    height="13" loading="lazy">Socket.io</span>
+              </div>
             </div>
           </article>
 
@@ -504,8 +542,16 @@
                 MERN-stack movie booking platform with auth, showtime listings, and ticket
                 reservation, pulling real listings from the TMDB API.
               </p>
-              <div class="log-tags"><span class="ptag">React</span><span class="ptag">Express</span><span
-                  class="ptag">MongoDB</span><span class="ptag">TMDB API</span></div>
+              <div class="log-tags">
+                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
+                    loading="lazy">React</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/express/4A5560" alt="" width="13" height="13"
+                    loading="lazy">Express</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/mongodb/4A5560" alt="" width="13" height="13"
+                    loading="lazy">MongoDB</span>
+                <span class="itag"><img src="https://cdn.simpleicons.org/themoviedatabase/4A5560" alt="" width="13"
+                    height="13" loading="lazy">TMDB API</span>
+              </div>
             </div>
           </article>
 
@@ -528,7 +574,10 @@
                 </a>
               </div>
               <p class="log-desc-sm">Built the React.js frontend for an electronics recycling platform.</p>
-              <div class="log-tags"><span class="ptag">React.js</span></div>
+              <div class="log-tags">
+                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
+                    loading="lazy">React.js</span>
+              </div>
             </div>
           </article>
 
@@ -553,7 +602,11 @@
               </div>
               <p class="log-desc-sm">Responsive React frontend for AI stock price prediction and real-time market
                 analysis.</p>
-              <div class="log-tags"><span class="ptag">React</span><span class="ptag">Data Viz</span></div>
+              <div class="log-tags">
+                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
+                    loading="lazy">React</span>
+                <span class="ptag">Data Viz</span>
+              </div>
             </div>
           </article>
 
@@ -562,8 +615,6 @@
     </section>
 
     <!-- ========== CERTIFICATIONS ========== -->
-    <!-- Drop your certificate JPEGs in a certs/ folder next to index.html -->
-    <!-- Name them: certs/ibm-rag.jpg, certs/google-ai.jpg, certs/google-data.jpg -->
     <section id="certifications" class="section reveal">
       <div class="container">
         <div class="section-header">
@@ -575,7 +626,11 @@
 
           <div class="cert-row" tabindex="0" id="cert-ibm">
             <span class="cert-name">IBM RAG and Agentic AI Professional Certificate</span>
-            <span class="cert-status ongoing">ongoing</span>
+            <div class="cert-right">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="cert-verify" id="cert-ibm-verify">verify
+                ↗</a>
+              <span class="cert-status ongoing">ongoing</span>
+            </div>
             <div class="cert-preview" role="tooltip" aria-label="IBM certificate preview">
               <img src="certs/ibm-rag.jpg" alt="IBM RAG and Agentic AI Certificate" loading="lazy" />
               <div class="cert-preview-label">IBM RAG and Agentic AI</div>
@@ -584,7 +639,12 @@
 
           <div class="cert-row" tabindex="0" id="cert-google-ai">
             <span class="cert-name">Google AI Essentials</span>
-            <span class="cert-status done">completed</span>
+            <div class="cert-right">
+              <a href="https://coursera.org/share/545af1a98d5bf46bdca8d4ba1aac16ed" target="_blank"
+                rel="noopener noreferrer" class="cert-verify" id="cert-google-ai-verify">verify
+                ↗</a>
+              <span class="cert-status done">completed</span>
+            </div>
             <div class="cert-preview" role="tooltip" aria-label="Google AI Essentials certificate preview">
               <img src="certs/google-ai.png" alt="Google AI Essentials Certificate" loading="lazy" />
               <div class="cert-preview-label">Google AI Essentials</div>
@@ -593,7 +653,11 @@
 
           <div class="cert-row" tabindex="0" id="cert-google-data">
             <span class="cert-name">Google Data Analysis with Python Specialization</span>
-            <span class="cert-status done">completed</span>
+            <div class="cert-right">
+              <a href="#" target="_blank" rel="noopener noreferrer" class="cert-verify"
+                id="cert-google-data-verify">verify ↗</a>
+              <span class="cert-status done">completed</span>
+            </div>
             <div class="cert-preview" role="tooltip" aria-label="Google Data Analysis certificate preview">
               <img src="certs/google-data.jpg" alt="Google Data Analysis Certificate" loading="lazy" />
               <div class="cert-preview-label">Google Data Analysis</div>
@@ -616,6 +680,31 @@
             Looking for an AI/ML or full-stack AI engineering internship. If you are building
             something ambitious, I would like to hear about it.
           </p>
+
+          <div class="curl-block">
+            <div class="code-block-head">message.sh</div>
+            <div class="curl-body">
+              <p class="curl-line">curl -X POST https://hridayanshu.dev/contact \</p>
+              <div class="curl-field">
+                <span class="curl-flag">--name</span>
+                <input type="text" id="curl-name" class="curl-input" placeholder="&quot;your name&quot;"
+                  autocomplete="name" />
+                <span class="curl-slash">\</span>
+              </div>
+              <div class="curl-field">
+                <span class="curl-flag">--data</span>
+                <textarea id="curl-message" class="curl-input curl-textarea" rows="3"
+                  placeholder="&quot;say what you're building...&quot;"></textarea>
+              </div>
+              <button type="button" class="curl-send" id="curl-send">
+                <span class="curl-send-prompt">$</span> send request
+              </button>
+              <p class="curl-response" id="curl-response" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <p class="contact-or">or reach me directly</p>
+
           <div class="contact-email-row">
             <button class="contact-email" id="contact-email-link" type="button">hridayanshu23@gmail.com</button>
             <span class="copy-feedback" id="copy-feedback">copied to clipboard</span>
@@ -639,6 +728,19 @@
       </div>
     </footer>
 
+  </div>
+
+  <!-- ========== COMMAND PALETTE ========== -->
+  <div class="cmdk-overlay" id="cmdk-overlay" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
+    <div class="cmdk-panel">
+      <div class="cmdk-input-row">
+        <span class="cmdk-prompt">$</span>
+        <input type="text" id="cmdk-input" class="cmdk-input" placeholder="type a command..." autocomplete="off"
+          spellcheck="false" aria-label="Command input" />
+        <kbd class="cmdk-esc">esc</kbd>
+      </div>
+      <ul class="cmdk-list" id="cmdk-list" role="listbox"></ul>
+    </div>
   </div>
 
   <script src="script.js"></script>
