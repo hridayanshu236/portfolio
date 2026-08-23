@@ -406,7 +406,8 @@ button:focus-visible,
 .terminal-bar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 1rem;
   padding: 0.65rem 1.1rem;
   border-bottom: 1px solid var(--border);
   background: var(--surface-muted);
@@ -437,6 +438,7 @@ button:focus-visible,
 
 .terminal-body {
   padding: 2.25rem 2rem 2.5rem;
+  position: relative;
 }
 
 .prompt-line {
@@ -1646,6 +1648,7 @@ button:focus-visible,
 
   .terminal-body {
     padding: 1.75rem 1.25rem 2rem;
+  position: relative;
   }
 
   .section {
@@ -1677,3 +1680,42 @@ button:focus-visible,
     flex-wrap: wrap;
   }
 }
+.terminal-portrait-img {
+  position: absolute;
+  top: 1.5rem;
+  right: -1rem;
+  width: 300px;
+  height: 300px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1;
+  pointer-events: none;
+}
+
+.terminal-body > *:not(.terminal-portrait-img) {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 900px) {
+  .terminal-portrait-img {
+    display: none;
+  }
+}
+
+.mac-buttons {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.mac-btn {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mac-btn.close { background: #FF5F56; }
+.mac-btn.minimize { background: #FFBD2E; }
+.mac-btn.expand { background: #27C93F; }
