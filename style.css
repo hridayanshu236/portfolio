@@ -1,8 +1,4 @@
-/* =============================================
-   DESIGN TOKENS
-   Portfolio styled like a codebase: light, paper toned,
-   monospace-forward, no pills, no neon.
-   ============================================= */
+﻿/* DESIGN TOKENS Portfolio styled like a codebase: light, paper toned, monospace-forward, no pills, no neon. */
 :root {
   /* Cool blueprint paper, not the warm cream that reads as "AI generated" */
   --bg: #F2F5F8;
@@ -33,9 +29,7 @@
   --ease: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* =============================================
-   RESET & BASE
-   ============================================= */
+/* reset & base */
 *,
 *::before,
 *::after {
@@ -88,9 +82,7 @@ strong {
   color: #fff;
 }
 
-/* =============================================
-   SCROLLBAR
-   ============================================= */
+/* scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
@@ -108,9 +100,7 @@ strong {
   background: var(--accent);
 }
 
-/* =============================================
-   FOCUS STATES
-   ============================================= */
+/* focus states */
 a:focus-visible,
 button:focus-visible,
 [tabindex]:focus-visible {
@@ -119,9 +109,7 @@ button:focus-visible,
   border-radius: 2px;
 }
 
-/* =============================================
-   LAYOUT
-   ============================================= */
+/* layout */
 .container {
   max-width: 960px;
   margin: 0 auto;
@@ -159,9 +147,7 @@ button:focus-visible,
   letter-spacing: -0.01em;
 }
 
-/* =============================================
-   SCROLL REVEAL
-   ============================================= */
+/* scroll reveal */
 .reveal {
   opacity: 0;
   transform: translateY(16px);
@@ -181,9 +167,7 @@ button:focus-visible,
   }
 }
 
-/* =============================================
-   NAVIGATION
-   ============================================= */
+/* navigation */
 #navbar {
   position: fixed;
   top: 0;
@@ -268,10 +252,7 @@ button:focus-visible,
   transition: var(--ease);
 }
 
-/* =============================================
-   SIDEBAR — desktop file explorer, replaces the
-   top navbar once there is room for it
-   ============================================= */
+/* SIDEBAR — desktop file explorer, replaces the top navbar once there is room for it */
 .sidebar {
   display: none;
 }
@@ -356,9 +337,7 @@ button:focus-visible,
   }
 }
 
-/* =============================================
-   HERO / TERMINAL BLOCK
-   ============================================= */
+/* HERO / TERMINAL BLOCK */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -566,9 +545,7 @@ button:focus-visible,
   background: var(--accent-soft);
 }
 
-/* =============================================
-   ABOUT
-   ============================================= */
+/* about */
 .about-grid {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -653,9 +630,7 @@ button:focus-visible,
   color: var(--accent-2);
 }
 
-/* =============================================
-   STACK — rendered as a real code block
-   ============================================= */
+/* stack — rendered as a real code block */
 .code-block {
   background: var(--surface);
   border: 1px solid var(--border);
@@ -723,9 +698,7 @@ button:focus-visible,
   font-style: italic;
 }
 
-/* =============================================
-   PROJECTS — git log style
-   ============================================= */
+/* projects — git log style */
 .projects-note {
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -976,9 +949,7 @@ button:focus-visible,
   transform: translateY(-1px);
 }
 
-/* =============================================
-   CERTIFICATIONS
-   ============================================= */
+/* certifications */
 .cert-hint {
   font-family: var(--font-mono);
   font-size: 0.8rem;
@@ -990,7 +961,7 @@ button:focus-visible,
 .cert-list {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  overflow: hidden;
+  overflow: visible;
   background: var(--surface);
 }
 
@@ -1004,7 +975,7 @@ button:focus-visible,
   position: relative;
   cursor: default;
   transition: background var(--ease);
-  overflow: hidden;
+  overflow: visible;
 }
 
 .cert-row:last-child {
@@ -1065,14 +1036,16 @@ button:focus-visible,
 
 .cert-preview {
   position: absolute;
-  right: -20px;
-  top: 50%;
-  transform: translateY(-50%) translateX(100%) scale(0.96);
+  left: 0;
+  bottom: calc(100% + 10px);
+  top: auto;
+  right: auto;
+  transform: translateY(8px) scale(0.96);
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.25s ease, transform 0.25s ease;
-  z-index: 50;
-  width: 300px;
+  z-index: 200;
+  width: 500px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
   box-shadow: 0 12px 32px -12px rgba(16, 22, 28, 0.28);
@@ -1083,7 +1056,7 @@ button:focus-visible,
 .cert-row:hover .cert-preview,
 .cert-row:focus-visible .cert-preview {
   opacity: 1;
-  transform: translateY(-50%) translateX(100%) scale(1);
+  transform: translateY(0) scale(1);
 }
 
 .cert-preview img {
@@ -1092,6 +1065,10 @@ button:focus-visible,
   display: block;
   border-radius: var(--radius-sm);
   transition: transform 0.3s ease;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .cert-row:hover .cert-preview img,
@@ -1107,9 +1084,7 @@ button:focus-visible,
   text-align: center;
 }
 
-/* =============================================
-   CONTACT
-   ============================================= */
+/* contact */
 .contact-inner {
   max-width: 600px;
   margin: 0 auto;
@@ -1187,9 +1162,7 @@ button:focus-visible,
   background: var(--accent-soft);
 }
 
-/* =============================================
-   FOOTER
-   ============================================= */
+/* footer */
 .footer {
   padding: 2rem 0;
   border-top: 1px solid var(--border);
@@ -1224,13 +1197,12 @@ button:focus-visible,
   color: var(--text-muted);
 }
 
-/* =============================================
-   RESPONSIVE
-   ============================================= */
+/* responsive */
 @media (max-width: 900px) {
   .cert-preview {
     right: auto;
     left: 0;
+    bottom: auto;
     top: calc(100% + 8px);
     transform: none;
     width: 100%;
@@ -1315,3 +1287,6 @@ button:focus-visible,
     flex-wrap: wrap;
   }
 }
+
+
+

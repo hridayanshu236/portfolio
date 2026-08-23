@@ -1,6 +1,4 @@
-/* =============================================
-   NAVBAR SCROLL + ACTIVE LINK
-   ============================================= */
+﻿/* NAVBAR SCROLL + ACTIVE LINK */
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section[id]');
@@ -22,9 +20,7 @@ function onScroll() {
 
 window.addEventListener('scroll', onScroll, { passive: true });
 
-/* =============================================
-   HAMBURGER MENU
-   ============================================= */
+/* HAMBURGER MENU */
 const hamburger = document.getElementById('hamburger');
 const navLinksContainer = document.getElementById('nav-links-list');
 
@@ -40,9 +36,7 @@ navLinks.forEach(link => {
   });
 });
 
-/* =============================================
-   SCROLL REVEAL — IntersectionObserver
-   ============================================= */
+/* SCROLL REVEAL — IntersectionObserver */
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -54,9 +48,7 @@ const revealObserver = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
-/* =============================================
-   HERO ROLE TYPEWRITER
-   ============================================= */
+/* HERO ROLE TYPEWRITER */
 const roleEl = document.getElementById('hero-role');
 const roles = ['AI/ML Engineer', 'GenAI Developer', 'Agent Builder', 'Full-Stack Developer'];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -105,9 +97,7 @@ function typewriter() {
   tick();
 }
 
-/* =============================================
-   COPY EMAIL TO CLIPBOARD
-   ============================================= */
+/* COPY EMAIL TO CLIPBOARD */
 const emailBtn = document.getElementById('contact-email-link');
 const copyFeedback = document.getElementById('copy-feedback');
 
@@ -132,10 +122,7 @@ if (emailBtn) {
   });
 }
 
-/* =============================================
-   HOVER SPOTLIGHT — tracks cursor position
-   on project entries and certificate rows
-   ============================================= */
+/* HOVER SPOTLIGHT — tracks cursor position on project entries and certificate rows */
 function attachSpotlight(cards, targetSelector) {
   cards.forEach(card => {
     const target = targetSelector ? card.querySelector(targetSelector) : card;
@@ -155,9 +142,7 @@ if (!reduceMotion) {
   attachSpotlight(document.querySelectorAll('.cert-row'), null);
 }
 
-/* =============================================
-   LIVE CLOCK — Kathmandu local time
-   ============================================= */
+/* LIVE CLOCK — Kathmandu local time */
 const clockEls = document.querySelectorAll('.js-clock');
 
 function updateClock() {
@@ -176,9 +161,7 @@ function updateClock() {
   clockEls.forEach(el => { el.textContent = time; });
 }
 
-/* =============================================
-   INIT
-   ============================================= */
+/* INIT */
 document.addEventListener('DOMContentLoaded', () => {
   onScroll();
   typewriter();
