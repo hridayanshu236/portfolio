@@ -13,10 +13,10 @@ function onScroll() {
     const top = section.offsetTop;
     const bottom = top + section.offsetHeight;
     const id = section.getAttribute('id');
-    const link = document.querySelector(`.nav-link[href="#${id}"]`);
-    if (link) {
-      link.classList.toggle('active', scrollMid >= top && scrollMid < bottom);
-    }
+    const isActive = scrollMid >= top && scrollMid < bottom;
+    document.querySelectorAll(`.nav-link[href="#${id}"]`).forEach(link => {
+      link.classList.toggle('active', isActive);
+    });
   });
 }
 
@@ -158,21 +158,22 @@ if (!reduceMotion) {
 /* =============================================
    LIVE CLOCK — Kathmandu local time
    ============================================= */
-const clockEl = document.getElementById('clock-time');
+const clockEls = document.querySelectorAll('.js-clock');
 
 function updateClock() {
-  if (!clockEl) return;
+  if (!clockEls.length) return;
+  let time;
   try {
-    const time = new Date().toLocaleTimeString('en-GB', {
+    time = new Date().toLocaleTimeString('en-GB', {
       timeZone: 'Asia/Kathmandu',
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
     });
-    clockEl.textContent = time;
   } catch (err) {
-    clockEl.textContent = new Date().toLocaleTimeString();
+    time = new Date().toLocaleTimeString();
   }
+  clockEls.forEach(el => { el.textContent = time; });
 }
 
 /* =============================================

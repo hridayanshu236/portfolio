@@ -123,7 +123,7 @@ button:focus-visible,
    LAYOUT
    ============================================= */
 .container {
-  max-width: 840px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 1.75rem;
 }
@@ -203,7 +203,7 @@ button:focus-visible,
 }
 
 .nav-inner {
-  max-width: 840px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 0 1.75rem;
   height: 100%;
@@ -269,6 +269,94 @@ button:focus-visible,
 }
 
 /* =============================================
+   SIDEBAR — desktop file explorer, replaces the
+   top navbar once there is room for it
+   ============================================= */
+.sidebar {
+  display: none;
+}
+
+.sidebar-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-bottom: 0.75rem;
+}
+
+.sidebar-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.sidebar-links .nav-link {
+  padding: 0.5rem 0.65rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+}
+
+.sidebar-links .nav-link::before {
+  content: none;
+}
+
+.sidebar-clock {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-faint);
+  margin-top: 1rem;
+}
+
+.sidebar-clock span {
+  color: var(--text-muted);
+}
+
+@media (min-width: 1080px) {
+  #navbar {
+    display: none;
+  }
+
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 240px;
+    padding: 2.25rem 1.5rem;
+    border-right: 1px solid var(--border);
+    background: var(--surface);
+    z-index: 100;
+    overflow-y: auto;
+  }
+
+  .sidebar-logo {
+    display: block;
+    margin-bottom: 2.5rem;
+  }
+
+  .sidebar-socials {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  .sidebar-socials .social-link {
+    width: 34px;
+    height: 34px;
+  }
+
+  .page-wrap {
+    margin-left: 240px;
+  }
+
+  .hero {
+    padding-top: 4rem;
+    min-height: calc(100vh - 4rem);
+  }
+}
+
+/* =============================================
    HERO / TERMINAL BLOCK
    ============================================= */
 .hero {
@@ -276,7 +364,7 @@ button:focus-visible,
   display: flex;
   align-items: center;
   padding: calc(var(--nav-h) + 2rem) 1.75rem 4rem;
-  max-width: 840px;
+  max-width: 960px;
   margin: 0 auto;
 }
 
@@ -959,7 +1047,6 @@ button:focus-visible,
 .cert-row:hover .cert-name,
 .cert-row:focus-visible .cert-name {
   color: var(--accent);
-  cursor: pointer;
 }
 
 .cert-status {
