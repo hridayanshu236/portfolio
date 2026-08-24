@@ -567,9 +567,13 @@ document.addEventListener('DOMContentLoaded', () => {
         html = html.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
         
         const desc = btnEl.getAttribute('data-desc');
+        const tag = btnEl.getAttribute('data-tag');
         if (desc) {
           const descHtml = `<div style="background: var(--surface-muted); padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); margin-bottom: 2.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Project Overview</div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
+              <span>Project Overview</span>
+              ${tag ? `<span style="color: var(--text-faint); font-size: 0.75rem; font-family: var(--font-mono); text-transform: none; letter-spacing: 0;">// Role: ${tag}</span>` : ''}
+            </div>
             <div>${desc}</div>
           </div>`;
           html = descHtml + html;
@@ -585,9 +589,13 @@ document.addEventListener('DOMContentLoaded', () => {
       let html = `<div class="readme-loading" style="color: var(--accent-2); margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem;">[!] Failed to load ${readmeFile} for ${repo}. It might not exist or the repository is private.</div>`;
       
       const desc = btnEl.getAttribute('data-desc');
+      const tag = btnEl.getAttribute('data-tag');
       if (desc) {
         const descHtml = `<div style="background: var(--surface-muted); padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); margin-bottom: 2.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Project Overview</div>
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
+              <span>Project Overview</span>
+              ${tag ? `<span style="color: var(--text-faint); font-size: 0.75rem; font-family: var(--font-mono); text-transform: none; letter-spacing: 0;">// Role: ${tag}</span>` : ''}
+            </div>
             <div>${desc}</div>
           </div>`;
         html = descHtml + html;
