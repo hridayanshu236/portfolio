@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=2" />
+  <link rel="stylesheet" href="style.css?v=4" />
 </head>
 
 <body>
@@ -217,9 +217,17 @@
           <span class="file-tab">stack.json</span>
           <h2 class="section-title">Stack</h2>
         </div>
-        <div class="code-block">
-          <div class="code-block-head">JSON</div>
-          <div class="code-lines">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="mac-buttons">
+              <span class="mac-btn close"></span>
+              <span class="mac-btn minimize"></span>
+              <span class="mac-btn expand"></span>
+            </div>
+            <span class="terminal-path">~/hridayanshu/stack.json</span>
+          </div>
+          <div class="terminal-body code-block" style="border: none; border-radius: 0; padding: 1.5rem; overflow-x: auto;">
+            <div class="code-lines">
             <div class="code-line"><span class="tok-punct">{</span></div>
             <div class="code-line">&nbsp;&nbsp;<span class="tok-key">"ai_ml"</span><span class="tok-punct">:</span>
               <span class="tok-punct">[</span><span class="tok-string">"LLMs"</span><span class="tok-punct">,</span>
@@ -269,6 +277,7 @@
                 class="tok-string">"Hindi"</span><span class="tok-punct">]</span>
             </div>
             <div class="code-line"><span class="tok-punct">}</span></div>
+            </div>
           </div>
         </div>
       </div>
@@ -281,341 +290,83 @@
           <span class="file-tab">log/</span>
           <h2 class="section-title">Work</h2>
         </div>
-        <p class="projects-note">AI/ML builds, hackathons, and full-stack projects, newest first.</p>
+        <p class="projects-note">AI/ML builds, hackathons, and full-stack projects. Select a folder to view its README.</p>
 
-        <div class="log-list">
+        <div class="projects-layout">
+          <!-- Left: File Explorer -->
+          <div class="projects-explorer">
+            <div class="explorer-header">
+              <span class="explorer-path">~/hridayanshu/work</span>
+            </div>
+            <div class="explorer-grid">
+              <!-- Folders injected/hardcoded here -->
+              <button class="folder-btn active" data-repo="Ledgr" data-branch="main" data-desc="A multi-user finance SaaS using multimodal LLMs (Gemini Flash) to extract and query data from receipts and bank statements. A LangChain agent router switches between Text-to-SQL for quantitative queries and vector search for qualitative data. Built with React and FastAPI.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">Ledgr</span>
+              </button>
+              <button class="folder-btn" data-repo="realtime-hatespeech-meet-en-ne" data-branch="main" data-desc="Fine-tuned XLM-RoBERTa on 206K plus sentences spanning English, Nepali, and code-switched text, reaching 96.7% accuracy and 0.777 macro F1, ahead of DistilBERT and BERT. Built a Socket.io backend to scan live chat in real-time.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">Hate_Speech</span>
+              </button>
+              <button class="folder-btn" data-repo="Crime_Simulation_AI" data-owner="SumiraMakaju" data-branch="main" data-desc="Tabular (Random Forest, 86 to 88% F1, 93 to 94% ROC-AUC) and spatial (Graph Neural Network) crime-prediction models, feeding a multi-agent reinforcement learning environment (PettingZoo) to simulate police patrol dispatching.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">SmartCrimeAI</span>
+              </button>
+              <button class="folder-btn" data-repo="TamangNetra" data-owner="Ssaammmmiitt" data-branch="main" data-readme="readme.md" data-desc="Full-stack translation platform on the TMT API, with semaphore-based concurrency and exponential backoff for rate-limit resiliency. A normalized translation cache plus WebSocket integrations enables fast collaboration.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">TamangNetra</span>
+              </button>
+              <button class="folder-btn" data-repo="EyeSpy" data-branch="main" data-desc="Manually annotated 763 HD exam images in YOLO format and trained a detector reaching 0.87 precision, 0.80 recall on cheating behavior, 0.84 F1 on smartphone detection, deployed on a real-time OpenCV pipeline.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">EyeSpy</span>
+              </button>
+              <button class="folder-btn" data-repo="Hackstreet-Bois" data-branch="main" data-desc="Used RAG and FAISS vector search to generate adaptive assessments and personalized learning roadmaps, with peer-to-peer tutor matching based on chapter-specific proficiency vectors.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">Edu_Assist</span>
+              </button>
+              <button class="folder-btn" data-repo="KU_Verse" data-branch="main" data-desc="University social platform with real-time messaging (Socket.io), event hubs, and interest-based networking, plus a personalized feed and Cloudinary and JWT auth.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">KU_Verse</span>
+              </button>
+              <button class="folder-btn" data-repo="CinemaGhar" data-branch="main" data-desc="MERN-stack movie booking platform with auth, showtime listings, and ticket reservation, pulling real listings from the TMDB API.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">CinemaGhar</span>
+              </button>
+              <button class="folder-btn" data-repo="ByteBack" data-branch="main" data-desc="Built the React.js frontend for an electronics recycling platform.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">ByteBack</span>
+              </button>
+              <button class="folder-btn" data-repo="codewave_StockSphere" data-branch="main" data-readme="ReadME.md" data-desc="Responsive React frontend for AI stock price prediction and real-time market analysis.">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="folder-icon"><path d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z"/></svg>
+                <span class="folder-name">StockSphere</span>
+              </button>
+            </div>
+          </div>
 
-          <!-- Ledgr -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot ai"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>aug 2026, present</span><span class="log-type">full-stack ai</span></div>
-              <div class="log-header">
-                <h3 class="log-title">Ledgr</h3>
-                <a href="https://github.com/hridayanshu236/Ledgr" target="_blank" rel="noopener noreferrer"
-                  class="log-link" aria-label="View Ledgr on GitHub" id="proj-ledgr-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
+          <!-- Right: Terminal Reader -->
+          <div class="projects-terminal terminal">
+            <div class="terminal-bar">
+              <div class="mac-buttons">
+                <span class="mac-btn close"></span>
+                <span class="mac-btn minimize"></span>
+                <span class="mac-btn expand"></span>
+              </div>
+              <span class="terminal-path" id="readme-path">~/hridayanshu/work/Ledgr/README.md</span>
+              <div class="terminal-actions">
+                <a href="https://github.com/hridayanshu236/Ledgr" target="_blank" rel="noopener noreferrer" class="repo-link" id="readme-repo-link" aria-label="View on GitHub">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
+                  open repo
                 </a>
               </div>
-              <p class="log-subtitle">Personal finance and receipt intelligence assistant</p>
-              <p class="log-desc">
-                A multi-user finance SaaS using multimodal LLMs (Gemini Flash) to extract and query data from receipts
-                and bank statements. A LangChain agent router switches between Text-to-SQL for quantitative queries and
-                RAG for semantic search. Deployed as a scalable public service on Oracle Cloud featuring JWT
-                authentication, tenant data isolation, and a Bring-Your-Own-Key (BYOK) AI architecture, backed by a
-                React Native mobile client.
-              </p>
-              <div class="log-tags">
-                <span class="itag"><img src="https://cdn.simpleicons.org/fastapi/4A5560" alt="" width="13" height="13"
-                    loading="lazy">FastAPI</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/sqlalchemy/4A5560" alt="" width="13"
-                    height="13" loading="lazy">SQLAlchemy</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
-                    loading="lazy">React Native</span>
-                <span class="ptag">LangChain</span><span class="ptag">ChromaDB</span><span class="ptag">Gemini
-                  Flash</span><span class="ptag">RAG</span>
+            </div>
+            <div class="terminal-body readme-scroller">
+              <div id="readme-content" class="markdown-body">
+                <div class="readme-loading">
+                  <span class="cursor">_</span> fetching README...
+                </div>
               </div>
             </div>
-          </article>
-
-          <!-- Hate Speech Detection -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot ai"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>apr, jun 2026</span><span class="log-type">nlp</span></div>
-              <div class="log-header">
-                <h3 class="log-title">Multilingual Hate Speech Detection</h3>
-                <a href="https://github.com/hridayanshu236/realtime-hatespeech-meet-en-ne" target="_blank"
-                  rel="noopener noreferrer" class="log-link" aria-label="View Hate Speech Detection on GitHub"
-                  id="proj-hatespeech-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-subtitle">Real-time English to Nepali moderation for virtual meetings</p>
-              <p class="log-desc">
-                Fine-tuned XLM-RoBERTa on 206K plus sentences spanning English, Nepali, and code-switched
-                text, reaching <strong>96.7% accuracy</strong> and 0.777 macro F1, ahead of DistilBERT
-                and MuRIL baselines. Integrated OpenAI Whisper for live speech-to-text transcription
-                during moderation.
-              </p>
-              <div class="log-tags">
-                <span class="itag"><img src="https://cdn.simpleicons.org/pytorch/4A5560" alt="" width="13" height="13"
-                    loading="lazy">PyTorch</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/openai/4A5560" alt="" width="13" height="13"
-                    loading="lazy">OpenAI Whisper</span>
-                <span class="ptag">XLM-RoBERTa</span><span class="ptag">NLP</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- SmartCrimeAI -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot ai"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>apr, jun 2026</span><span class="log-type">multi-agent rl</span></div>
-              <div class="log-header">
-                <h3 class="log-title">SmartCrimeAI</h3>
-                <a href="https://github.com/SumiraMakaju/Crime_Simulation_AI" target="_blank" rel="noopener noreferrer"
-                  class="log-link" aria-label="View SmartCrimeAI on GitHub" id="proj-crime-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-subtitle">Multi-agent crime prediction and patrol routing</p>
-              <p class="log-desc">
-                Tabular (Random Forest, <strong>86 to 88% F1, 93 to 94% ROC-AUC</strong>) and spatial (Graph
-                Neural Network) crime-prediction models, feeding a multi-agent reinforcement learning
-                system designed to coordinate patrol routing and cut response times.
-              </p>
-              <div class="log-tags">
-                <span class="itag"><img src="https://cdn.simpleicons.org/pytorch/4A5560" alt="" width="13" height="13"
-                    loading="lazy">PyTorch</span>
-                <span class="ptag">Random Forest</span><span class="ptag">GNN</span><span class="ptag">MARL</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- TamangNetra (hackathon) -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot hackathon"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>google tmt hackathon</span><span class="log-type">full stack</span></div>
-              <div class="log-header">
-                <h3 class="log-title">TamangNetra</h3>
-                <a href="https://github.com/Ssaammmmiitt/TamangNetra" target="_blank" rel="noopener noreferrer"
-                  class="log-link" aria-label="View TamangNetra on GitHub" id="proj-tamangnetra-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-subtitle">Trilingual (English, Nepali, Tamang) document translation</p>
-              <p class="log-desc">
-                Full-stack translation platform on the TMT API, with semaphore-based concurrency and
-                exponential backoff for rate-limit resiliency. A normalized translation cache plus
-                bit-identical reconstruction logic enables near-instant document regeneration while
-                preserving layout across PDF, DOCX, CSV, and TSV.
-              </p>
-              <div class="log-tags">
-                <span class="ptag">TMT API</span><span class="ptag">Concurrency</span><span class="ptag">Document
-                  Processing</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- EyeSpy -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot ai"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>computer vision</span><span class="log-type">dataset, model, frontend</span>
-              </div>
-              <div class="log-header">
-                <h3 class="log-title">EyeSpy</h3>
-                <a href="https://github.com/hridayanshu236/EyeSpy" target="_blank" rel="noopener noreferrer"
-                  class="log-link" aria-label="View EyeSpy on GitHub" id="proj-eyespy-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-subtitle">Real-time exam cheating detection</p>
-              <p class="log-desc">
-                Manually annotated 763 HD exam images in YOLO format and trained a detector reaching
-                <strong>0.87 precision, 0.80 recall</strong> on cheating behavior, 0.84 F1 on
-                non-cheating. Built the live surveillance frontend that surfaces detections during
-                offline exams.
-              </p>
-              <div class="log-tags">
-                <span class="itag"><img src="https://cdn.simpleicons.org/opencv/4A5560" alt="" width="13" height="13"
-                    loading="lazy">OpenCV</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
-                    loading="lazy">React.js</span>
-                <span class="ptag">YOLO</span><span class="ptag">Computer Vision</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- Edu Assist (hackathon) -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot hackathon"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>hackfest 2025</span><span class="log-type">frontend, rag</span></div>
-              <div class="log-header">
-                <h3 class="log-title">Edu Assist</h3>
-                <a href="https://github.com/hridayanshu236/Hackstreet-Bois" target="_blank" rel="noopener noreferrer"
-                  class="log-link" aria-label="View Edu Assist on GitHub" id="proj-eduassist-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-subtitle">AI-powered peer learning platform</p>
-              <p class="log-desc">
-                Used RAG and FAISS vector search to generate adaptive assessments and personalized
-                learning roadmaps, with peer-to-peer tutor matching based on chapter-specific
-                strengths and weaknesses. Built performance dashboards and role-based access for
-                students, teachers, and admins.
-              </p>
-              <div class="log-tags">
-                <span class="ptag">RAG</span><span class="ptag">FAISS</span><span class="ptag">Vector Search</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- KU_Verse -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>frontend</span><span class="log-type">full stack</span></div>
-              <div class="log-header">
-                <h3 class="log-title-sm">KU_Verse</h3>
-                <a href="https://github.com/hridayanshu236/KU_Verse" target="_blank" rel="noopener noreferrer"
-                  class="log-link" aria-label="View KU_Verse on GitHub" id="proj-kuverse-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-desc-sm">
-                University social platform with real-time messaging (Socket.io), event hubs, and
-                interest-based networking, plus a personalized feed and Cloudinary and JWT auth.
-              </p>
-              <div class="log-tags">
-                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
-                    loading="lazy">React</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/nodedotjs/4A5560" alt="" width="13" height="13"
-                    loading="lazy">Node.js</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/mongodb/4A5560" alt="" width="13" height="13"
-                    loading="lazy">MongoDB</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/socketdotio/4A5560" alt="" width="13"
-                    height="13" loading="lazy">Socket.io</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- CinemaGhar -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>full stack</span><span class="log-type">web</span></div>
-              <div class="log-header">
-                <h3 class="log-title-sm">CinemaGhar</h3>
-                <a href="https://github.com/hridayanshu236/CinemaGhar" target="_blank" rel="noopener noreferrer"
-                  class="log-link" aria-label="View CinemaGhar on GitHub" id="proj-cinema-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-desc-sm">
-                MERN-stack movie booking platform with auth, showtime listings, and ticket
-                reservation, pulling real listings from the TMDB API.
-              </p>
-              <div class="log-tags">
-                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
-                    loading="lazy">React</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/express/4A5560" alt="" width="13" height="13"
-                    loading="lazy">Express</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/mongodb/4A5560" alt="" width="13" height="13"
-                    loading="lazy">MongoDB</span>
-                <span class="itag"><img src="https://cdn.simpleicons.org/themoviedatabase/4A5560" alt="" width="13"
-                    height="13" loading="lazy">TMDB API</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- ByteBack (hackathon) -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot hackathon"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>hackfest 2024</span><span class="log-type">frontend</span></div>
-              <div class="log-header">
-                <h3 class="log-title-sm">ByteBack</h3>
-                <a href="https://github.com/hridayanshu236/ByteBack" target="_blank" rel="noopener noreferrer"
-                  class="log-link" aria-label="View ByteBack on GitHub" id="proj-byteback-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-desc-sm">Built the React.js frontend for an electronics recycling platform.</p>
-              <div class="log-tags">
-                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
-                    loading="lazy">React.js</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- StockSphere (hackathon) -->
-          <article class="log-entry">
-            <div class="log-graph"><span class="log-dot hackathon"></span></div>
-            <div class="log-body">
-              <div class="log-meta"><span>codewave 2024</span><span class="log-type">frontend</span></div>
-              <div class="log-header">
-                <h3 class="log-title-sm">StockSphere</h3>
-                <a href="https://github.com/hridayanshu236/codewave_StockSphere" target="_blank"
-                  rel="noopener noreferrer" class="log-link" aria-label="View StockSphere on GitHub"
-                  id="proj-stocksphere-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                    aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                </a>
-              </div>
-              <p class="log-desc-sm">Responsive React frontend for AI stock price prediction and real-time market
-                analysis.</p>
-              <div class="log-tags">
-                <span class="itag"><img src="https://cdn.simpleicons.org/react/4A5560" alt="" width="13" height="13"
-                    loading="lazy">React</span>
-                <span class="ptag">Data Viz</span>
-              </div>
-            </div>
-          </article>
-
+          </div>
         </div>
       </div>
     </section>
@@ -628,7 +379,17 @@
           <h2 class="section-title">Certifications</h2>
         </div>
         <p class="cert-hint">Hover a row to preview the certificate</p>
-        <div class="cert-list">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="mac-buttons">
+              <span class="mac-btn close"></span>
+              <span class="mac-btn minimize"></span>
+              <span class="mac-btn expand"></span>
+            </div>
+            <span class="terminal-path">~/hridayanshu/certs.log</span>
+          </div>
+          <div class="terminal-body" style="padding: 0;">
+            <div class="cert-list" style="border: none; border-radius: 0;">
 
           <div class="cert-row" tabindex="0" id="cert-ibm">
             <span class="cert-name">IBM RAG and Agentic AI Professional Certificate</span>
@@ -670,6 +431,7 @@
             </div>
           </div>
 
+          </div>
         </div>
       </div>
     </section>
@@ -681,7 +443,16 @@
           <span class="file-tab">contact.sh</span>
           <h2 class="section-title">Contact</h2>
         </div>
-        <div class="contact-inner">
+        <div class="terminal">
+          <div class="terminal-bar">
+            <div class="mac-buttons">
+              <span class="mac-btn close"></span>
+              <span class="mac-btn minimize"></span>
+              <span class="mac-btn expand"></span>
+            </div>
+            <span class="terminal-path">~/hridayanshu/contact.sh</span>
+          </div>
+          <div class="terminal-body contact-inner" style="padding: 2.5rem 2rem; overflow: hidden; border: none;">
           <p class="contact-sub">
             Looking for an AI/ML or full-stack AI engineering internship. If you are building
             something ambitious, I would like to hear about it.
@@ -722,6 +493,7 @@
               class="contact-link" id="contact-linkedin-link">linkedin</a>
             <a href="tel:+9779765987179" class="contact-link" id="contact-phone-link">+977 9765987179</a>
           </div>
+          </div>
         </div>
       </div>
     </section>
@@ -749,7 +521,8 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script src="script.js?v=5"></script>
 </body>
 
 </html>

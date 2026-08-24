@@ -1,4 +1,4 @@
-﻿/* NAVBAR SCROLL + ACTIVE LINK */
+/* NAVBAR SCROLL + ACTIVE LINK */
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
 const sections = document.querySelectorAll('section[id]');
@@ -512,3 +512,179 @@ document.addEventListener('DOMContentLoaded', () => {
   updateClock();
   setInterval(updateClock, 1000);
 });
+
+/* FILE EXPLORER README MATCHER */
+(function setupFileExplorer() {
+  const folders = document.querySelectorAll('.folder-btn');
+  const readmeContent = document.getElementById('readme-content');
+  const readmePath = document.getElementById('readme-path');
+  const readmeRepoLink = document.getElementById('readme-repo-link');
+
+  if (!folders.length || !readmeContent) return;
+
+  async function loadReadme(repo, owner, branch, readmeFile, btnEl) {
+    folders.forEach(btn => btn.classList.remove('active'));
+    btnEl.classList.add('active');
+
+    readmePath.textContent = `~/hridayanshu/work/${repo}/${readmeFile}`;
+    readmeRepoLink.href = `https://github.com/${owner}/${repo}`;
+
+    readmeContent.innerHTML = '<div class="readme-loading"><span class="cursor">_</span> fetching README...</div>';
+
+    try {
+      let rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/${readmeFile}`;
+      let branchUsed = 'main';
+      let response = await fetch(rawUrl);
+      
+      if (!response.ok) {
+        rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/master/${readmeFile}`;
+        branchUsed = 'master';
+        response = await fetch(rawUrl);
+      }
+      
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      
+      const markdown = await response.text();
+      
+      if (typeof marked !== 'undefined') {
+        let html = await marked.parse(markdown);
+        
+        const rawBase = `https://raw.githubusercontent.com/${owner}/${repo}/${branchUsed}/`;
+        const githubBase = `https://github.com/${owner}/${repo}/blob/${branchUsed}/`;
+        
+        html = html.replace(/src="(?!http|\/\/|data:)([^"]+)"/g, (match, path) => {
+          const cleanPath = path.replace(/^\.\//, '');
+          return `src="${rawBase}${cleanPath}"`;
+        });
+        
+        html = html.replace(/href="(?!http|\/\/|data:|mailto:|#)([^"]+)"/g, (match, path) => {
+          const cleanPath = path.replace(/^\.\//, '');
+          return `href="${githubBase}${cleanPath}"`;
+        });
+        
+        html = html.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
+        
+        const desc = btnEl.getAttribute('data-desc');
+        if (desc) {
+          const descHtml = `<div style="background: var(--surface-muted); padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); margin-bottom: 2.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Project Overview</div>
+            <div>${desc}</div>
+          </div>`;
+          html = descHtml + html;
+        }
+        
+        readmeContent.innerHTML = html;
+      } else {
+        readmeContent.innerHTML = `<pre>${markdown}</pre>`;
+      }
+    } catch (error) {
+      console.error("Failed to load README:", error);
+      
+      let html = `<div class="readme-loading" style="color: var(--accent-2); margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem;">[!] Failed to load ${readmeFile} for ${repo}. It might not exist or the repository is private.</div>`;
+      
+      const desc = btnEl.getAttribute('data-desc');
+      if (desc) {
+        const descHtml = `<div style="background: var(--surface-muted); padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); margin-bottom: 2.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
+            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.5rem;">Project Overview</div>
+            <div>${desc}</div>
+          </div>`;
+        html = descHtml + html;
+      }
+      
+      readmeContent.innerHTML = html;
+    }
+  }
+
+  folders.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const repo = btn.getAttribute('data-repo');
+      const owner = btn.getAttribute('data-owner') || 'hridayanshu236';
+      const branch = btn.getAttribute('data-branch') || 'main';
+      const readmeFile = btn.getAttribute('data-readme') || 'README.md';
+      loadReadme(repo, owner, branch, readmeFile, btn);
+    });
+  });
+
+  const firstBtn = folders[0];
+  if (firstBtn) {
+    const repo = firstBtn.getAttribute('data-repo');
+    const owner = firstBtn.getAttribute('data-owner') || 'hridayanshu236';
+    const branch = firstBtn.getAttribute('data-branch') || 'main';
+    const readmeFile = firstBtn.getAttribute('data-readme') || 'README.md';
+    loadReadme(repo, owner, branch, readmeFile, firstBtn);
+  }
+})();
+
+/* CERT PREVIEW POSITIONING */
+(function setupCertPreviews() {
+  const rows = document.querySelectorAll('.cert-row');
+  
+  rows.forEach(row => {
+    const preview = row.querySelector('.cert-preview');
+    if (!preview) return;
+    
+    // Move the preview to the body to escape all overflow and transform clipping contexts
+    document.body.appendChild(preview);
+    
+    function showPreview() {
+      // Close all others first
+      document.querySelectorAll('.cert-preview.active').forEach(p => {
+         if (p !== preview) p.classList.remove('active');
+      });
+      
+      const rect = row.getBoundingClientRect();
+      const previewHeight = preview.offsetHeight || 300; 
+      
+      let top = rect.top - previewHeight - 10;
+      if (top < 10) {
+        top = rect.bottom + 10;
+      }
+      
+      preview.style.top = top + 'px';
+      
+      // On mobile, center it if the screen is small
+      if (window.innerWidth <= 600) {
+        preview.style.left = '50%';
+        preview.style.transform = 'translate(-50%, 8px) scale(0.96)';
+        // When active, we want it to be centered and scaled up
+        preview.style.setProperty('--target-transform', 'translate(-50%, 0) scale(1)');
+      } else {
+        preview.style.left = Math.max(10, rect.left) + 'px';
+        preview.style.transform = '';
+        preview.style.setProperty('--target-transform', 'translateY(0) scale(1)');
+      }
+      
+      preview.classList.add('active');
+    }
+    
+    function hidePreview() {
+      preview.classList.remove('active');
+    }
+    
+    row.addEventListener('mouseenter', showPreview);
+    row.addEventListener('mouseleave', hidePreview);
+    
+    // Touch support
+    row.addEventListener('touchstart', (e) => {
+      // If user is clicking the verify link, don't toggle preview
+      if (e.target.closest('.cert-verify')) return;
+      
+      e.preventDefault(); // Prevent default to handle custom toggle
+      
+      if (preview.classList.contains('active')) {
+        hidePreview();
+      } else {
+        showPreview();
+      }
+    }, { passive: false });
+  });
+  
+  // Close preview when touching outside
+  document.addEventListener('touchstart', (e) => {
+    if (!e.target.closest('.cert-row') && !e.target.closest('.cert-preview')) {
+      document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
+    }
+  }, { passive: true });
+})();
