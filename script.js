@@ -50,7 +50,7 @@ document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
 
 /* HERO ROLE TYPEWRITER */
 const roleEl = document.getElementById('hero-role');
-const roles = ['AI/ML Engineer', 'GenAI Developer', 'Agent Builder', 'Full-Stack Developer'];
+const roles = ['AI/ML Engineer', 'GenAI Developer', 'Full-Stack AI Developer'];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 function typewriter() {
@@ -535,37 +535,37 @@ document.addEventListener('DOMContentLoaded', () => {
       let rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/${readmeFile}`;
       let branchUsed = 'main';
       let response = await fetch(rawUrl);
-      
+
       if (!response.ok) {
         rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/master/${readmeFile}`;
         branchUsed = 'master';
         response = await fetch(rawUrl);
       }
-      
+
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
-      
+
       const markdown = await response.text();
-      
+
       if (typeof marked !== 'undefined') {
         let html = await marked.parse(markdown);
-        
+
         const rawBase = `https://raw.githubusercontent.com/${owner}/${repo}/${branchUsed}/`;
         const githubBase = `https://github.com/${owner}/${repo}/blob/${branchUsed}/`;
-        
+
         html = html.replace(/src="(?!http|\/\/|data:)([^"]+)"/g, (match, path) => {
           const cleanPath = path.replace(/^\.\//, '');
           return `src="${rawBase}${cleanPath}"`;
         });
-        
+
         html = html.replace(/href="(?!http|\/\/|data:|mailto:|#)([^"]+)"/g, (match, path) => {
           const cleanPath = path.replace(/^\.\//, '');
           return `href="${githubBase}${cleanPath}"`;
         });
-        
+
         html = html.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
-        
+
         const desc = btnEl.getAttribute('data-desc');
         const tag = btnEl.getAttribute('data-tag');
         if (desc) {
@@ -578,16 +578,16 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>`;
           html = descHtml + html;
         }
-        
+
         readmeContent.innerHTML = html;
       } else {
         readmeContent.innerHTML = `<pre>${markdown}</pre>`;
       }
     } catch (error) {
       console.error("Failed to load README:", error);
-      
+
       let html = `<div class="readme-loading" style="color: var(--accent-2); margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem;">[!] Failed to load ${readmeFile} for ${repo}. It might not exist or the repository is private.</div>`;
-      
+
       const desc = btnEl.getAttribute('data-desc');
       const tag = btnEl.getAttribute('data-tag');
       if (desc) {
@@ -600,7 +600,7 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>`;
         html = descHtml + html;
       }
-      
+
       readmeContent.innerHTML = html;
     }
   }
@@ -628,30 +628,30 @@ document.addEventListener('DOMContentLoaded', () => {
 /* CERT PREVIEW POSITIONING */
 (function setupCertPreviews() {
   const rows = document.querySelectorAll('.cert-row');
-  
+
   rows.forEach(row => {
     const preview = row.querySelector('.cert-preview');
     if (!preview) return;
-    
+
     // Move the preview to the body to escape all overflow and transform clipping contexts
     document.body.appendChild(preview);
-    
+
     function showPreview() {
       // Close all others first
       document.querySelectorAll('.cert-preview.active').forEach(p => {
-         if (p !== preview) p.classList.remove('active');
+        if (p !== preview) p.classList.remove('active');
       });
-      
+
       const rect = row.getBoundingClientRect();
-      const previewHeight = preview.offsetHeight || 300; 
-      
+      const previewHeight = preview.offsetHeight || 300;
+
       let top = rect.top - previewHeight - 10;
       if (top < 10) {
         top = rect.bottom + 10;
       }
-      
+
       preview.style.top = top + 'px';
-      
+
       // On mobile, center it if the screen is small
       if (window.innerWidth <= 600) {
         preview.style.left = '50%';
@@ -663,24 +663,24 @@ document.addEventListener('DOMContentLoaded', () => {
         preview.style.transform = '';
         preview.style.setProperty('--target-transform', 'translateY(0) scale(1)');
       }
-      
+
       preview.classList.add('active');
     }
-    
+
     function hidePreview() {
       preview.classList.remove('active');
     }
-    
+
     row.addEventListener('mouseenter', showPreview);
     row.addEventListener('mouseleave', hidePreview);
-    
+
     // Touch support
     row.addEventListener('touchstart', (e) => {
       // If user is clicking the verify link, don't toggle preview
       if (e.target.closest('.cert-verify')) return;
-      
+
       e.preventDefault(); // Prevent default to handle custom toggle
-      
+
       if (preview.classList.contains('active')) {
         hidePreview();
       } else {
@@ -688,7 +688,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }, { passive: false });
   });
-  
+
   // Close preview when touching outside
   document.addEventListener('touchstart', (e) => {
     if (!e.target.closest('.cert-row') && !e.target.closest('.cert-preview')) {
