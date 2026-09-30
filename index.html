@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=4" />
+  <link rel="stylesheet" href="style.css?v=5" />
 </head>
 
 <body>
@@ -24,6 +24,7 @@
       <a href="#home" class="nav-logo" id="nav-logo-link">hridayanshu<span class="cursor">_</span></a>
       <ul class="nav-links" id="nav-links-list">
         <li><a href="#about" class="nav-link">about</a></li>
+        <li><a href="#experience" class="nav-link">experience</a></li>
         <li><a href="#skills" class="nav-link">stack</a></li>
         <li><a href="#projects" class="nav-link">work</a></li>
         <li><a href="#certifications" class="nav-link">certs</a></li>
@@ -47,6 +48,7 @@
       <p class="sidebar-label">portfolio/</p>
       <ul class="nav-links sidebar-links">
         <li><a href="#about" class="nav-link">about.md</a></li>
+        <li><a href="#experience" class="nav-link">experience.log</a></li>
         <li><a href="#skills" class="nav-link">stack.json</a></li>
         <li><a href="#projects" class="nav-link">log/</a></li>
         <li><a href="#certifications" class="nav-link">certs.log</a></li>
@@ -195,11 +197,16 @@
           <dl class="about-manifest">
             <div class="manifest-row">
               <dt>education</dt>
-              <dd>Kathmandu University, B.E. Computer Engineering<br /><span>2022 to 2026, CGPA 3.92 / 4.0</span></dd>
+              <dd class="education-entry">
+                <img src="assets/KU_logo.jpg" alt="Kathmandu University logo" class="organization-logo ku-logo"
+                  width="2048" height="2048" loading="lazy" decoding="async" />
+                <span class="education-copy">Kathmandu University, B.E. Computer Engineering<span>2022 to 2026, CGPA
+                    3.92 / 4.0</span></span>
+              </dd>
             </div>
             <div class="manifest-row">
               <dt>location</dt>
-              <dd>Kathmandu, Nepal<br /><span>open to remote and on-site</span></dd>
+              <dd>Kathmandu, Nepal</dd>
             </div>
             <div class="manifest-row">
               <dt>focus</dt>
@@ -207,6 +214,40 @@
             </div>
           </dl>
         </div>
+      </div>
+    </section>
+
+    <!-- ========== EXPERIENCE ========== -->
+    <section id="experience" class="section reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="file-tab">experience.log</span>
+          <h2 class="section-title">Experience</h2>
+        </div>
+        <article class="terminal experience-terminal">
+          <div class="terminal-bar">
+            <div class="mac-buttons" aria-hidden="true">
+              <span class="mac-btn close"></span>
+              <span class="mac-btn minimize"></span>
+              <span class="mac-btn expand"></span>
+            </div>
+            <span class="terminal-path">~/hridayanshu/experience.log</span>
+          </div>
+          <div class="terminal-body experience-content">
+            <img src="assets/Xuno_logo.jpg" alt="Xuno logo" class="organization-logo experience-logo" width="1024"
+              height="1024" loading="lazy" decoding="async" />
+            <div class="experience-main">
+              <div class="experience-heading">
+                <div>
+                  <p class="experience-label">Xuno &middot; Internship</p>
+                  <h3>AI/ML and Data Intern</h3>
+                </div>
+                <p class="experience-date"><time datetime="2026-09">Sep 2026</time> &ndash; Present</p>
+              </div>
+              <p class="experience-location">Kathmandu, Nepal / Hybrid</p>
+            </div>
+          </div>
+        </article>
       </div>
     </section>
 

@@ -373,6 +373,7 @@ if (!reduceMotion) {
 
   const commands = [
     { label: 'about', hint: 'about.md', action: () => go('#about') },
+    { label: 'experience', hint: 'experience.log', action: () => go('#experience') },
     { label: 'stack', hint: 'stack.json', action: () => go('#skills') },
     { label: 'projects', hint: 'log/', action: () => go('#projects') },
     { label: 'work', hint: 'log/', action: () => go('#projects') },
