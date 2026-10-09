@@ -13,7 +13,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=5" />
+  <link rel="stylesheet" href="style.css?v=6" />
 </head>
 
 <body>
@@ -31,7 +31,8 @@
         <li><a href="#contact" class="nav-link">contact</a></li>
         <li><a href="resume.pdf" download="Hridayanshu_Raj_Acharya_Resume.pdf" class="nav-link">resume</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-controls="nav-links-list"
+        aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
     </div>
@@ -76,7 +77,7 @@
               d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
           </svg>
         </a>
-        <a href="http://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer" class="social-link"
+        <a href="https://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer" class="social-link"
           aria-label="LinkedIn profile" id="sidebar-social-linkedin">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"
             aria-hidden="true">
@@ -136,7 +137,7 @@
                   d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
               </svg>
             </a>
-            <a href="http://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer" class="social-link"
+            <a href="https://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer" class="social-link"
               aria-label="LinkedIn profile" id="social-linkedin">
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"
                 aria-hidden="true">
@@ -153,7 +154,8 @@
               </svg>
             </a>
           </div>
-          <img src="about.jpg" alt="Hridayanshu Portrait" class="terminal-portrait-img">
+          <img src="about.jpg" alt="Hridayanshu Portrait" class="terminal-portrait-img" width="1752" height="2432"
+            decoding="async">
         </div>
       </div>
     </section>
@@ -242,8 +244,7 @@
             </div>
             <span class="terminal-path">~/hridayanshu/stack.json</span>
           </div>
-          <div class="terminal-body code-block"
-            style="border: none; border-radius: 0; padding: 1.5rem; overflow-x: auto;">
+          <div class="terminal-body code-block stack-code-body">
             <div class="code-lines">
               <div class="code-line"><span class="tok-punct">{</span></div>
               <div class="code-line">&nbsp;&nbsp;<span class="tok-key">"ai_ml"</span><span class="tok-punct">:</span>
@@ -481,8 +482,8 @@
             </div>
             <span class="terminal-path">~/hridayanshu/certs.log</span>
           </div>
-          <div class="terminal-body" style="padding: 0;">
-            <div class="cert-list" style="border: none; border-radius: 0;">
+          <div class="terminal-body cert-terminal-body">
+            <div class="cert-list">
 
               <div class="cert-group-heading">
                 <span>Google</span>
@@ -496,8 +497,8 @@
                     ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip" aria-label="Google AI Essentials certificate preview">
-                  <iframe src="certs/google-ai-essentials.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0"
-                    title="Google AI Essentials certificate PDF" loading="lazy"></iframe>
+                  <iframe src="certs/google-ai-essentials.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                    title="Google AI Essentials certificate PDF" loading="lazy" tabindex="-1"></iframe>
                   <div class="cert-preview-label">Google AI Essentials</div>
                 </div>
               </div>
@@ -509,8 +510,8 @@
                     rel="noopener noreferrer" class="cert-verify" id="cert-google-data-verify">verify ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip" aria-label="Google Data Analysis certificate preview">
-                  <iframe src="certs/DataAnalysis.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0"
-                    title="Google Data Analysis certificate PDF" loading="lazy"></iframe>
+                  <iframe src="certs/DataAnalysis.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                    title="Google Data Analysis certificate PDF" loading="lazy" tabindex="-1"></iframe>
                   <div class="cert-preview-label">Google Data Analysis</div>
                 </div>
               </div>
@@ -522,8 +523,9 @@
                     rel="noopener noreferrer" class="cert-verify" id="cert-google-cloud-genai-verify">verify ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip" aria-label="Google Cloud Gen AI Academy certificate preview">
-                  <iframe src="certs/Cohort3.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0"
-                    title="Google Cloud Gen AI Academy APAC 2026 Cohort 3 certificate PDF" loading="lazy"></iframe>
+                  <iframe src="certs/Cohort3.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                    title="Google Cloud Gen AI Academy APAC 2026 Cohort 3 certificate PDF" loading="lazy"
+                    tabindex="-1"></iframe>
                   <div class="cert-preview-label">Google Cloud Gen AI Academy — Cohort 3</div>
                 </div>
               </div>
@@ -539,8 +541,8 @@
                     rel="noopener noreferrer" class="cert-verify" id="cert-claude-101-verify">verify ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip" aria-label="Claude 101 certificate preview">
-                  <iframe src="certs/claude-101.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0"
-                    title="Claude 101 certificate PDF" loading="lazy"></iframe>
+                  <iframe src="certs/claude-101.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                    title="Claude 101 certificate PDF" loading="lazy" tabindex="-1"></iframe>
                   <div class="cert-preview-label">Claude 101</div>
                 </div>
               </div>
@@ -553,8 +555,9 @@
                 </div>
                 <div class="cert-preview" role="tooltip"
                   aria-label="Introduction to Model Context Protocol certificate preview">
-                  <iframe src="certs/introduction-to-model-context-protocol.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0"
-                    title="Introduction to Model Context Protocol certificate PDF" loading="lazy"></iframe>
+                  <iframe
+                    src="certs/introduction-to-model-context-protocol.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                    title="Introduction to Model Context Protocol certificate PDF" loading="lazy" tabindex="-1"></iframe>
                   <div class="cert-preview-label">Introduction to Model Context Protocol</div>
                 </div>
               </div>
@@ -567,8 +570,9 @@
                 </div>
                 <div class="cert-preview" role="tooltip"
                   aria-label="Model Context Protocol Advanced Topics certificate preview">
-                  <iframe src="certs/model-context-protocol-advanced-topics.pdf#page=1&toolbar=0&navpanes=0&scrollbar=0"
-                    title="Model Context Protocol Advanced Topics certificate PDF" loading="lazy"></iframe>
+                  <iframe
+                    src="certs/model-context-protocol-advanced-topics.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                    title="Model Context Protocol Advanced Topics certificate PDF" loading="lazy" tabindex="-1"></iframe>
                   <div class="cert-preview-label">Model Context Protocol: Advanced Topics</div>
                 </div>
               </div>
@@ -595,7 +599,7 @@
             </div>
             <span class="terminal-path">~/hridayanshu/contact.sh</span>
           </div>
-          <div class="terminal-body contact-inner" style="padding: 2.5rem 2rem; overflow: hidden; border: none;">
+          <div class="terminal-body contact-inner">
             <p class="contact-sub">
               For work or collaboration, send me a message.
             </p>
@@ -625,8 +629,9 @@
             <p class="contact-or">or reach me directly</p>
 
             <div class="contact-email-row">
-              <button class="contact-email" id="contact-email-link" type="button">hridayanshu23@gmail.com</button>
-              <span class="copy-feedback" id="copy-feedback">copied to clipboard</span>
+              <button class="contact-email" id="contact-email-link" type="button"
+                aria-label="Copy email address">hridayanshu23@gmail.com</button>
+              <span class="copy-feedback" id="copy-feedback" role="status" aria-live="polite">copied to clipboard</span>
             </div>
             <div class="contact-links">
               <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer" class="contact-link"
@@ -637,7 +642,7 @@
                 </svg>
                 <span>github</span>
               </a>
-              <a href="http://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer"
+              <a href="https://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer"
                 class="contact-link" id="contact-linkedin-link">
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
                   <path

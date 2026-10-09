@@ -14,6 +14,8 @@ function onScroll() {
     const isActive = scrollMid >= top && scrollMid < bottom;
     document.querySelectorAll(`.nav-link[href="#${id}"]`).forEach(link => {
       link.classList.toggle('active', isActive);
+      if (isActive) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
     });
   });
 }
@@ -27,6 +29,13 @@ const navLinksContainer = document.getElementById('nav-links-list');
 hamburger.addEventListener('click', () => {
   const isOpen = navLinksContainer.classList.toggle('open');
   hamburger.setAttribute('aria-expanded', isOpen);
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key !== 'Escape' || !navLinksContainer.classList.contains('open')) return;
+  navLinksContainer.classList.remove('open');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.focus();
 });
 
 navLinks.forEach(link => {
@@ -139,7 +148,6 @@ function attachSpotlight(cards, targetSelector) {
 
 if (!reduceMotion) {
   attachSpotlight(document.querySelectorAll('.log-entry'), '.log-body');
-  attachSpotlight(document.querySelectorAll('.cert-row'), null);
 }
 
 
@@ -344,7 +352,7 @@ if (!reduceMotion) {
     { label: 'home', hint: 'profile.md', action: () => go('#home') },
     { label: 'resume', hint: 'download', action: () => triggerDownload() },
     { label: 'github', hint: 'external ↗', action: () => openLink('https://github.com/hridayanshu236') },
-    { label: 'linkedin', hint: 'external ↗', action: () => openLink('http://linkedin.com/in/hridayanshu23') },
+    { label: 'linkedin', hint: 'external ↗', action: () => openLink('https://linkedin.com/in/hridayanshu23') },
     { label: 'email', hint: 'mailto', action: () => openLink('mailto:hridayanshu23@gmail.com') },
   ];
 
@@ -484,6 +492,20 @@ document.addEventListener('DOMContentLoaded', () => {
 
   if (!folders.length || !readmeContent) return;
 
+  function buildProjectSummary(btnEl) {
+    const desc = btnEl.getAttribute('data-desc');
+    if (!desc) return '';
+
+    const tag = btnEl.getAttribute('data-tag');
+    return `<div class="project-summary">
+      <div class="project-summary-head">
+        <span>Project overview</span>
+        ${tag ? `<span class="project-summary-role">// Role: ${tag}</span>` : ''}
+      </div>
+      <p>${desc}</p>
+    </div>`;
+  }
+
   async function loadReadme(repo, owner, branch, readmeFile, btnEl) {
     folders.forEach(btn => btn.classList.remove('active'));
     btnEl.classList.add('active');
@@ -528,18 +550,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         html = html.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
 
-        const desc = btnEl.getAttribute('data-desc');
-        const tag = btnEl.getAttribute('data-tag');
-        if (desc) {
-          const descHtml = `<div style="background: var(--surface-muted); padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); margin-bottom: 2.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
-              <span>Project Overview</span>
-              ${tag ? `<span style="color: var(--text-faint); font-size: 0.75rem; font-family: var(--font-mono); text-transform: none; letter-spacing: 0;">// Role: ${tag}</span>` : ''}
-            </div>
-            <div>${desc}</div>
-          </div>`;
-          html = descHtml + html;
-        }
+        html = buildProjectSummary(btnEl) + html;
 
         readmeContent.innerHTML = html;
       } else {
@@ -548,20 +559,8 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (error) {
       console.error("Failed to load README:", error);
 
-      let html = `<div class="readme-loading" style="color: var(--accent-2); margin-top: 1.5rem; font-family: var(--font-mono); font-size: 0.85rem;">[!] Failed to load ${readmeFile} for ${repo}. It might not exist or the repository is private.</div>`;
-
-      const desc = btnEl.getAttribute('data-desc');
-      const tag = btnEl.getAttribute('data-tag');
-      if (desc) {
-        const descHtml = `<div style="background: var(--surface-muted); padding: 1.25rem 1.5rem; border-radius: var(--radius-sm); border: 1px solid var(--border-strong); margin-bottom: 2.5rem; color: var(--text-muted); font-size: 0.95rem; line-height: 1.6; box-shadow: 0 4px 12px rgba(0,0,0,0.05);">
-            <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.75rem; display: flex; align-items: center; justify-content: space-between;">
-              <span>Project Overview</span>
-              ${tag ? `<span style="color: var(--text-faint); font-size: 0.75rem; font-family: var(--font-mono); text-transform: none; letter-spacing: 0;">// Role: ${tag}</span>` : ''}
-            </div>
-            <div>${desc}</div>
-          </div>`;
-        html = descHtml + html;
-      }
+      const errorHtml = `<div class="readme-error">[!] Failed to load ${readmeFile} for ${repo}. It might not exist or the repository is private.</div>`;
+      const html = buildProjectSummary(btnEl) + errorHtml;
 
       readmeContent.innerHTML = html;
     }
@@ -606,24 +605,26 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const rect = row.getBoundingClientRect();
       const previewHeight = preview.offsetHeight || 300;
+      const previewWidth = preview.offsetWidth || 500;
+      const gap = 10;
+      const above = rect.top - previewHeight - gap;
+      const below = rect.bottom + gap;
 
-      let top = rect.top - previewHeight - 10;
-      if (top < 10) {
-        top = rect.bottom + 10;
-      }
+      let top;
+      if (above >= gap) top = above;
+      else if (below + previewHeight <= window.innerHeight - gap) top = below;
+      else top = Math.max(gap, (window.innerHeight - previewHeight) / 2);
 
       preview.style.top = top + 'px';
 
       // On mobile, center it if the screen is small
       if (window.innerWidth <= 600) {
         preview.style.left = '50%';
-        preview.style.transform = 'translate(-50%, 8px) scale(0.96)';
-        // When active, we want it to be centered and scaled up
-        preview.style.setProperty('--target-transform', 'translate(-50%, 0) scale(1)');
+        preview.style.setProperty('--preview-x', '-50%');
       } else {
-        preview.style.left = Math.max(10, rect.left) + 'px';
-        preview.style.transform = '';
-        preview.style.setProperty('--target-transform', 'translateY(0) scale(1)');
+        const maxLeft = Math.max(gap, window.innerWidth - previewWidth - gap);
+        preview.style.left = Math.min(Math.max(gap, rect.left), maxLeft) + 'px';
+        preview.style.setProperty('--preview-x', '0');
       }
 
       preview.classList.add('active');
@@ -635,6 +636,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
     row.addEventListener('mouseenter', showPreview);
     row.addEventListener('mouseleave', hidePreview);
+    row.addEventListener('focusin', showPreview);
+    row.addEventListener('focusout', event => {
+      if (!row.contains(event.relatedTarget)) hidePreview();
+    });
+    row.addEventListener('keydown', event => {
+      if (event.key === 'Escape') hidePreview();
+    });
 
     // Touch support
     row.addEventListener('touchstart', (e) => {
@@ -656,5 +664,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!e.target.closest('.cert-row') && !e.target.closest('.cert-preview')) {
       document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
     }
+  }, { passive: true });
+
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
   }, { passive: true });
 })();
