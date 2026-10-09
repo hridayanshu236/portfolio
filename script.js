@@ -324,45 +324,6 @@ if (!reduceMotion) {
   });
 })();
 
-/* ABOUT STATS — count up once when scrolled into view */
-(function statCounters() {
-  const stats = document.querySelectorAll('.stat-num[data-target]');
-  if (!stats.length) return;
-
-  function animateStat(el) {
-    const target = parseFloat(el.getAttribute('data-target'));
-    const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-
-    if (reduceMotion || isNaN(target)) {
-      el.textContent = target.toFixed(decimals);
-      return;
-    }
-
-    const duration = 1100;
-    const start = performance.now();
-
-    function tick(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - progress, 3);
-      el.textContent = (target * eased).toFixed(decimals);
-      if (progress < 1) requestAnimationFrame(tick);
-      else el.textContent = target.toFixed(decimals);
-    }
-    requestAnimationFrame(tick);
-  }
-
-  const statObserver = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        animateStat(entry.target);
-        statObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.6 });
-
-  stats.forEach(el => statObserver.observe(el));
-})();
-
 /* COMMAND PALETTE */
 (function commandPalette() {
   const overlay = document.getElementById('cmdk-overlay');
