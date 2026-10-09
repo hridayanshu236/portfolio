@@ -1,3 +1,35 @@
+/* THEME */
+const themeToggles = document.querySelectorAll('[data-theme-toggle]');
+
+function updateThemeControls(theme) {
+  const isDark = theme === 'dark';
+  themeToggles.forEach(toggle => {
+    const nextTheme = isDark ? 'light' : 'dark';
+    toggle.setAttribute('aria-pressed', String(isDark));
+    toggle.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
+  });
+}
+
+function setTheme(theme, persist = false) {
+  document.documentElement.dataset.theme = theme;
+  updateThemeControls(theme);
+  if (!persist) return;
+  try {
+    localStorage.setItem('portfolio-theme', theme);
+  } catch (error) {
+    // The theme still applies when storage is unavailable.
+  }
+}
+
+setTheme(document.documentElement.dataset.theme || 'dark');
+
+themeToggles.forEach(toggle => {
+  toggle.addEventListener('click', () => {
+    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(nextTheme, true);
+  });
+});
+
 /* NAVBAR SCROLL + ACTIVE LINK */
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');

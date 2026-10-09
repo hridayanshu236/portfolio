@@ -1,5 +1,6 @@
 /* DESIGN TOKENS Portfolio styled like a codebase: light, paper toned, monospace-forward, no pills, no neon. */
 :root {
+  color-scheme: light;
   /* Cool blueprint paper, not the warm cream that reads as "AI generated" */
   --bg: #F2F5F8;
   --canvas: #EEF2F4;
@@ -8,6 +9,7 @@
   --border: #D7E0E7;
   --border-strong: #B4C1CB;
   --canvas-dot: rgba(92, 115, 130, 0.16);
+  --schematic-image: url("assets/schematic-field.svg");
 
   --text: #10161C;
   --text-muted: #4A5560;
@@ -29,6 +31,27 @@
   --radius: 6px;
   --radius-sm: 4px;
   --ease: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #101920;
+  --canvas: #0B1318;
+  --surface: #121D24;
+  --surface-muted: #192630;
+  --border: #2B3C47;
+  --border-strong: #455B68;
+  --canvas-dot: rgba(128, 158, 177, 0.2);
+  --schematic-image: url("assets/schematic-field-dark.svg");
+
+  --text: #E8EEF2;
+  --text-muted: #B2C0C9;
+  --text-faint: #8FA1AC;
+
+  --accent: #62C491;
+  --accent-soft: #173629;
+  --accent-2: #E08A63;
+  --accent-2-soft: #3A261E;
 }
 
 /* reset & base */
@@ -119,7 +142,7 @@ button:focus-visible,
   min-height: 100vh;
   background-color: var(--canvas);
   background-image:
-    url("assets/schematic-field.svg"),
+    var(--schematic-image),
     radial-gradient(circle at center, var(--canvas-dot) 0.7px, transparent 0.8px);
   background-size: 1200px 1920px, 24px 24px;
   background-position: center top, 0 0;
@@ -199,6 +222,12 @@ button:focus-visible,
   justify-content: space-between;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
 .nav-logo {
   font-family: var(--font-mono);
   font-size: 0.95rem;
@@ -257,6 +286,63 @@ button:focus-visible,
   height: 2px;
   background: var(--text);
   transition: var(--ease);
+}
+
+.theme-toggle {
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 0.6rem 0.7rem;
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  cursor: pointer;
+  transition: color var(--ease), background-color var(--ease), border-color var(--ease);
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  background: var(--accent-soft);
+  border-color: var(--accent);
+}
+
+.theme-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+}
+
+.theme-icon-moon {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-sun {
+  display: none;
+}
+
+:root[data-theme="dark"] .theme-icon-moon {
+  display: block;
+}
+
+.theme-toggle-compact {
+  display: none;
+  width: 44px;
+  min-width: 44px;
+  padding: 0;
+  justify-content: center;
+  background: transparent;
+  border-color: transparent;
+}
+
+@media (max-width: 1079px) {
+  .theme-toggle-compact {
+    display: inline-flex;
+  }
 }
 
 /* SIDEBAR — desktop file explorer, replaces the top navbar once there is room for it */
@@ -320,6 +406,14 @@ button:focus-visible,
 
 .sidebar-clock span {
   color: var(--text-muted);
+}
+
+.sidebar-theme-toggle {
+  width: 44px;
+  min-width: 44px;
+  padding: 0;
+  justify-content: center;
+  margin-bottom: 0.9rem;
 }
 
 @media (min-width: 1080px) {

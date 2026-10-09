@@ -6,14 +6,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="Hridayanshu Raj Acharya: AI/ML engineer building RAG pipelines, autonomous agents, and production ML systems." />
+  <meta name="color-scheme" content="light dark" />
   <title>Hridayanshu Raj Acharya | AI/ML Engineer</title>
+  <script>
+    (() => {
+      try {
+        const savedTheme = localStorage.getItem('portfolio-theme');
+        document.documentElement.dataset.theme = savedTheme || 'dark';
+      } catch (error) {
+        document.documentElement.dataset.theme = 'dark';
+      }
+    })();
+  </script>
   <link rel="icon" type="image/png" href="about-transparent.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=10" />
+  <link rel="stylesheet" href="style.css?v=12" />
 </head>
 
 <body>
@@ -31,10 +42,24 @@
         <li><a href="#contact" class="nav-link">contact</a></li>
         <li><a href="resume.pdf" download="Hridayanshu_Raj_Acharya_Resume.pdf" class="nav-link">resume</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-controls="nav-links-list"
-        aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+      <div class="nav-actions">
+        <button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle
+          aria-label="Switch to dark mode" aria-pressed="false">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="3.5" />
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+          </svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20.4 15.3A8.7 8.7 0 0 1 8.7 3.6 8.7 8.7 0 1 0 20.4 15.3Z" />
+          </svg>
+        </button>
+        <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-controls="nav-links-list"
+          aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
     </div>
   </nav>
 
@@ -68,6 +93,18 @@
       </a>
     </div>
     <div class="sidebar-bottom">
+      <button type="button" class="theme-toggle sidebar-theme-toggle" data-theme-toggle
+        aria-label="Switch to dark mode" aria-pressed="false">
+        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="3.5" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
+        </svg>
+        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+          stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M20.4 15.3A8.7 8.7 0 0 1 8.7 3.6 8.7 8.7 0 1 0 20.4 15.3Z" />
+        </svg>
+      </button>
       <div class="sidebar-socials">
         <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer" class="social-link"
           aria-label="GitHub profile" id="sidebar-social-github">
@@ -153,7 +190,7 @@
               </svg>
             </a>
           </div>
-          <img src="about.jpg" alt="Hridayanshu Portrait" class="terminal-portrait-img" width="1752" height="2432"
+          <img src="about-transparent.png" alt="Hridayanshu Portrait" class="terminal-portrait-img" width="1065" height="1477"
             decoding="async">
         </div>
       </div>
@@ -687,7 +724,7 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="script.js?v=8"></script>
+  <script src="script.js?v=10"></script>
 </body>
 
 </html>
