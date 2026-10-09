@@ -365,7 +365,8 @@ document.addEventListener('DOMContentLoaded', () => {
     folders.forEach(btn => btn.classList.remove('active'));
     btnEl.classList.add('active');
 
-    readmePath.textContent = `~/hridayanshu/work/${repo}/${readmeFile}`;
+    readmePath.title = `~/hridayanshu/work/${repo}/${readmeFile}`;
+    readmePath.innerHTML = `<span class="path-desktop">~/hridayanshu</span><span class="path-mobile">~</span>/work/${repo}/${readmeFile}`;
     readmeRepoLink.href = `https://github.com/${owner}/${repo}`;
 
     readmeContent.innerHTML = '<div class="readme-loading"><span class="cursor">_</span> fetching README...</div>';
@@ -441,18 +442,22 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 })();
 
-/* CERT PREVIEW POSITIONING */
+/* CERT PREVIEW POSITIONING (Desktop only; disabled on mobile) */
 (function setupCertPreviews() {
   const rows = document.querySelectorAll('.cert-row');
+  const certList = document.querySelector('.cert-list');
 
   rows.forEach(row => {
     const preview = row.querySelector('.cert-preview');
     if (!preview) return;
 
-    // Move the preview to the body to escape all overflow and transform clipping contexts
+    // Move preview to body to escape overflow clipping contexts
     document.body.appendChild(preview);
 
     function showPreview() {
+      // Disabled in mobile view
+      if (window.innerWidth <= 768) return;
+
       // Close all others first
       document.querySelectorAll('.cert-preview.active').forEach(p => {
         if (p !== preview) p.classList.remove('active');
@@ -472,15 +477,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
       preview.style.top = top + 'px';
 
-      // On mobile, center it if the screen is small
-      if (window.innerWidth <= 600) {
-        preview.style.left = '50%';
-        preview.style.setProperty('--preview-x', '-50%');
-      } else {
-        const maxLeft = Math.max(gap, window.innerWidth - previewWidth - gap);
-        preview.style.left = Math.min(Math.max(gap, rect.left), maxLeft) + 'px';
-        preview.style.setProperty('--preview-x', '0');
-      }
+      const maxLeft = Math.max(gap, window.innerWidth - previewWidth - gap);
+      preview.style.left = Math.min(Math.max(gap, rect.left), maxLeft) + 'px';
+      preview.style.setProperty('--preview-x', '0');
 
       preview.classList.add('active');
     }
@@ -489,39 +488,64 @@ document.addEventListener('DOMContentLoaded', () => {
       preview.classList.remove('active');
     }
 
-    row.addEventListener('mouseenter', showPreview);
-    row.addEventListener('mouseleave', hidePreview);
-    row.addEventListener('focusin', showPreview);
+    // Desktop hover & keyboard accessibility only
+    row.addEventListener('mouseenter', () => {
+      if (window.innerWidth > 768) showPreview();
+    });
+    row.addEventListener('mouseleave', () => {
+      if (window.innerWidth > 768) hidePreview();
+    });
+    row.addEventListener('focusin', () => {
+      if (window.innerWidth > 768) showPreview();
+    });
     row.addEventListener('focusout', event => {
       if (!row.contains(event.relatedTarget)) hidePreview();
     });
     row.addEventListener('keydown', event => {
       if (event.key === 'Escape') hidePreview();
+      if ((event.key === 'Enter' || event.key === ' ') && window.innerWidth > 768) {
+        if (!event.target.closest('.cert-verify')) {
+          event.preventDefault();
+          if (preview.classList.contains('active')) hidePreview();
+          else showPreview();
+        }
+      }
     });
 
-    // Touch support
-    row.addEventListener('touchstart', (e) => {
-      // If user is clicking the verify link, don't toggle preview
+    // Desktop click toggle
+    row.addEventListener('click', (e) => {
+      if (window.innerWidth <= 768) return;
       if (e.target.closest('.cert-verify')) return;
-
-      e.preventDefault(); // Prevent default to handle custom toggle
 
       if (preview.classList.contains('active')) {
         hidePreview();
       } else {
         showPreview();
       }
-    }, { passive: false });
+    });
   });
 
-  // Close preview when touching outside
-  document.addEventListener('touchstart', (e) => {
+  // Automatically dismiss active preview when scrolling cert-list or window
+  if (certList) {
+    certList.addEventListener('scroll', () => {
+      document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
+    }, { passive: true });
+  }
+
+  window.addEventListener('scroll', () => {
+    document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
+  }, { passive: true });
+
+  // Close preview when clicking outside
+  document.addEventListener('click', (e) => {
     if (!e.target.closest('.cert-row') && !e.target.closest('.cert-preview')) {
       document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
     }
-  }, { passive: true });
+  });
 
   window.addEventListener('resize', () => {
-    document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
+    if (window.innerWidth <= 768) {
+      document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
+    }
   }, { passive: true });
 })();
