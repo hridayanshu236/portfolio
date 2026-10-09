@@ -549,3 +549,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 })();
+// Mobile scroll chaining prevention (prevents nested terminals from triggering window scroll)
+(function setupScrollContainment() {
+  const containers = document.querySelectorAll('.cert-list, .projects-terminal .terminal-body, .explorer-grid');
+  containers.forEach(el => {
+    el.addEventListener('touchstart', () => {
+      const top = el.scrollTop;
+      const totalScroll = el.scrollHeight;
+      const currentScroll = top + el.offsetHeight;
+
+      if (top === 0) {
+        el.scrollTop = 1;
+      } else if (currentScroll >= totalScroll) {
+        el.scrollTop = top - 1;
+      }
+    }, { passive: true });
+  });
+})();
