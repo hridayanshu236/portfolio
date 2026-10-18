@@ -21,6 +21,15 @@ function setTheme(theme, persist = false) {
   }
 }
 
+function getSavedTheme() {
+  try {
+    const saved = localStorage.getItem('portfolio-theme');
+    return saved === 'light' || saved === 'dark' ? saved : null;
+  } catch (error) {
+    return null;
+  }
+}
+
 setTheme(document.documentElement.dataset.theme || 'dark');
 
 themeToggles.forEach(toggle => {
@@ -29,6 +38,14 @@ themeToggles.forEach(toggle => {
     setTheme(nextTheme, true);
   });
 });
+
+// Follow the system appearance until the visitor picks a theme with the toggle.
+const lightSchemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
+if (lightSchemeQuery && lightSchemeQuery.addEventListener) {
+  lightSchemeQuery.addEventListener('change', event => {
+    if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
+  });
+}
 
 /* NAVBAR SCROLL + ACTIVE LINK */
 const navbar = document.getElementById('navbar');
@@ -77,77 +94,39 @@ navLinks.forEach(link => {
   });
 });
 
-/* HERO ROLE TYPEWRITER */
-const roleEl = document.getElementById('hero-role');
-const roles = ['AI/ML Engineer', 'GenAI Developer', 'Full-Stack AI Developer'];
 const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function typewriter() {
-  if (!roleEl) return;
-
-  if (reduceMotion) {
-    roleEl.textContent = roles[0];
-    return;
-  }
-
-  let roleIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
-
-  const TYPE_SPEED = 55;
-  const DELETE_SPEED = 30;
-  const HOLD_TIME = 1600;
-
-  function tick() {
-    const current = roles[roleIndex];
-
-    if (!deleting) {
-      charIndex++;
-      roleEl.textContent = current.slice(0, charIndex);
-      if (charIndex === current.length) {
-        deleting = true;
-        setTimeout(tick, HOLD_TIME);
-        return;
-      }
-      setTimeout(tick, TYPE_SPEED);
-    } else {
-      charIndex--;
-      roleEl.textContent = current.slice(0, charIndex);
-      if (charIndex === 0) {
-        deleting = false;
-        roleIndex = (roleIndex + 1) % roles.length;
-        setTimeout(tick, TYPE_SPEED);
-        return;
-      }
-      setTimeout(tick, DELETE_SPEED);
-    }
-  }
-
-  tick();
-}
-
 /* COPY EMAIL TO CLIPBOARD */
-const emailBtn = document.getElementById('contact-email-link');
+const copyEmailBtn = document.getElementById('copy-email-btn');
 const copyFeedback = document.getElementById('copy-feedback');
 
-if (emailBtn) {
-  emailBtn.addEventListener('click', async () => {
-    const email = emailBtn.textContent.trim();
+if (copyEmailBtn && copyFeedback) {
+  copyEmailBtn.addEventListener('click', async () => {
+    const email = copyEmailBtn.dataset.email;
+    let copied = false;
     try {
       await navigator.clipboard.writeText(email);
+      copied = true;
     } catch (err) {
       const temp = document.createElement('textarea');
       temp.value = email;
       document.body.appendChild(temp);
       temp.select();
-      document.execCommand('copy');
+      try {
+        copied = document.execCommand('copy');
+      } catch (execError) {
+        copied = false;
+      }
       document.body.removeChild(temp);
     }
+    // Changing the text is what makes the status region announce it.
+    copyFeedback.textContent = copied ? 'copied to clipboard' : 'couldn\'t copy, select the address instead';
     copyFeedback.classList.add('show');
-    clearTimeout(emailBtn._feedbackTimer);
-    emailBtn._feedbackTimer = setTimeout(() => {
+    clearTimeout(copyEmailBtn._feedbackTimer);
+    copyEmailBtn._feedbackTimer = setTimeout(() => {
       copyFeedback.classList.remove('show');
-    }, 1800);
+      copyFeedback.textContent = '';
+    }, 2500);
   });
 }
 
@@ -172,18 +151,25 @@ if (emailBtn) {
     const message = messageInput.value.trim();
 
     if (!message) {
-      showResponse('→ 400 Bad Request — message can\'t be empty', true);
+      showResponse('→ 400 Bad Request: write a message first', true);
+      messageInput.setAttribute('aria-invalid', 'true');
       messageInput.focus();
       return;
     }
 
+    messageInput.removeAttribute('aria-invalid');
     const subject = encodeURIComponent(`Portfolio contact${name ? ' from ' + name : ''}`);
     const bodyLines = [message, '', name ? `— ${name}` : ''].join('\n');
     const body = encodeURIComponent(bodyLines);
     const mailto = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
 
-    showResponse('→ 200 OK — opening your mail client...', false);
+    // A mailto: link can't report whether a mail app opened, so don't claim success.
+    showResponse(`→ opening your mail app… nothing opened? email ${EMAIL}`, false);
     window.location.href = mailto;
+  });
+
+  messageInput.addEventListener('input', () => {
+    if (messageInput.value.trim()) messageInput.removeAttribute('aria-invalid');
   });
 })();
 
@@ -213,11 +199,19 @@ if (emailBtn) {
 
   let filtered = commands.slice();
   let activeIndex = 0;
+  let lastFocused = null;
 
   function go(hash) {
-    close();
+    close({ restoreFocus: false });
     const target = document.querySelector(hash);
-    if (target) target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    if (!target) return;
+    target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
+    // Move keyboard focus to the section so Tab continues from there.
+    const heading = target.querySelector('h1, h2');
+    if (heading) {
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
+    }
   }
 
   function triggerDownload() {
@@ -234,6 +228,7 @@ if (emailBtn) {
   function render() {
     list.innerHTML = '';
     if (filtered.length === 0) {
+      input.removeAttribute('aria-activedescendant');
       const empty = document.createElement('li');
       empty.className = 'cmdk-empty';
       empty.textContent = 'no matching command';
@@ -243,12 +238,15 @@ if (emailBtn) {
     filtered.forEach((cmd, i) => {
       const item = document.createElement('li');
       item.className = 'cmdk-item' + (i === activeIndex ? ' active' : '');
+      item.id = `cmdk-option-${i}`;
       item.setAttribute('role', 'option');
+      item.setAttribute('aria-selected', String(i === activeIndex));
       item.innerHTML = `<span class="cmdk-item-label">${cmd.label}</span><span class="cmdk-item-hint">${cmd.hint}</span>`;
       item.addEventListener('mouseenter', () => { activeIndex = i; render(); });
       item.addEventListener('click', () => cmd.action());
       list.appendChild(item);
     });
+    input.setAttribute('aria-activedescendant', `cmdk-option-${activeIndex}`);
   }
 
   function filterCommands(query) {
@@ -259,6 +257,7 @@ if (emailBtn) {
   }
 
   function open() {
+    lastFocused = document.activeElement;
     overlay.hidden = false;
     input.value = '';
     filterCommands('');
@@ -266,9 +265,11 @@ if (emailBtn) {
     document.body.style.overflow = 'hidden';
   }
 
-  function close() {
+  function close({ restoreFocus = true } = {}) {
     overlay.hidden = true;
     document.body.style.overflow = '';
+    if (restoreFocus && lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
+    lastFocused = null;
   }
 
   if (trigger) trigger.addEventListener('click', open);
@@ -302,6 +303,9 @@ if (emailBtn) {
     } else if (e.key === 'Enter') {
       e.preventDefault();
       if (filtered[activeIndex]) filtered[activeIndex].action();
+    } else if (e.key === 'Tab') {
+      // The input is the palette's only focusable control: keep focus inside the dialog.
+      e.preventDefault();
     }
   });
 
@@ -311,7 +315,7 @@ if (emailBtn) {
 })();
 
 
-/* LIVE CLOCK — Kathmandu local time */
+/* LIVE CLOCK — Kathmandu local time (hours and minutes; ticking seconds is peripheral motion) */
 const clockEls = document.querySelectorAll('.js-clock');
 
 function updateClock() {
@@ -322,20 +326,20 @@ function updateClock() {
       timeZone: 'Asia/Kathmandu',
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit',
     });
   } catch (err) {
-    time = new Date().toLocaleTimeString();
+    time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   }
-  clockEls.forEach(el => { el.textContent = time; });
+  clockEls.forEach(el => {
+    if (el.textContent !== time) el.textContent = time;
+  });
 }
 
 /* INIT */
 document.addEventListener('DOMContentLoaded', () => {
   onScroll();
-  typewriter();
   updateClock();
-  setInterval(updateClock, 1000);
+  setInterval(updateClock, 15000);
 });
 
 /* FILE EXPLORER README MATCHER */
@@ -344,8 +348,46 @@ document.addEventListener('DOMContentLoaded', () => {
   const readmeContent = document.getElementById('readme-content');
   const readmePath = document.getElementById('readme-path');
   const readmeRepoLink = document.getElementById('readme-repo-link');
+  const readerPane = document.querySelector('.projects-terminal');
+  const singleColumn = window.matchMedia('(max-width: 800px)');
 
   if (!folders.length || !readmeContent) return;
+
+  // Relative = not a scheme (http:, mailto:, data:...), not protocol-relative, not an in-page anchor.
+  const isRelativeUrl = url => !!url && !/^(?:[a-z][a-z0-9+.-]*:|\/\/|#)/i.test(url);
+
+  function renderReadme(markdownHtml, rawBase, githubBase) {
+    const template = document.createElement('template');
+    template.innerHTML = DOMPurify.sanitize(markdownHtml);
+    const content = template.content;
+
+    content.querySelectorAll('img[src]').forEach(img => {
+      const src = img.getAttribute('src');
+      if (isRelativeUrl(src)) img.setAttribute('src', rawBase + src.replace(/^\.?\//, ''));
+      img.setAttribute('loading', 'lazy');
+    });
+
+    content.querySelectorAll('a[href]').forEach(link => {
+      const href = link.getAttribute('href');
+      if (isRelativeUrl(href)) link.setAttribute('href', githubBase + href.replace(/^\.?\//, ''));
+      if (!href.startsWith('#')) {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+
+    // The pane sits under the "Work" h2, so README headings start at h3.
+    // md-hN keeps the original level for styling.
+    content.querySelectorAll('h1, h2, h3, h4, h5, h6').forEach(heading => {
+      const level = Number(heading.tagName[1]);
+      const demoted = document.createElement(`h${Math.min(level + 2, 6)}`);
+      demoted.className = `md-h${level}`;
+      demoted.append(...heading.childNodes);
+      heading.replaceWith(demoted);
+    });
+
+    return content;
+  }
 
   function buildProjectSummary(btnEl) {
     const desc = btnEl.getAttribute('data-desc');
@@ -361,15 +403,23 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>`;
   }
 
-  async function loadReadme(repo, owner, branch, readmeFile, btnEl) {
-    folders.forEach(btn => btn.classList.remove('active'));
+  async function loadReadme(btnEl) {
+    const repo = btnEl.getAttribute('data-repo');
+    const owner = btnEl.getAttribute('data-owner') || 'hridayanshu236';
+    const readmeFile = btnEl.getAttribute('data-readme') || 'README.md';
+
+    folders.forEach(btn => {
+      btn.classList.remove('active');
+      btn.removeAttribute('aria-current');
+    });
     btnEl.classList.add('active');
+    btnEl.setAttribute('aria-current', 'true');
 
     readmePath.title = `~/hridayanshu/work/${repo}/${readmeFile}`;
     readmePath.innerHTML = `<span class="path-desktop">~/hridayanshu</span><span class="path-mobile">~</span>/work/${repo}/${readmeFile}`;
     readmeRepoLink.href = `https://github.com/${owner}/${repo}`;
 
-    readmeContent.innerHTML = '<div class="readme-loading"><span class="cursor">_</span> fetching README...</div>';
+    readmeContent.innerHTML = '<div class="readme-loading"><span class="cursor" aria-hidden="true">_</span> fetching README...</div>';
 
     try {
       let rawUrl = `https://raw.githubusercontent.com/${owner}/${repo}/main/${readmeFile}`;
@@ -388,29 +438,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const markdown = await response.text();
 
-      if (typeof marked !== 'undefined') {
-        let html = await marked.parse(markdown);
+      readmeContent.innerHTML = buildProjectSummary(btnEl);
 
+      // README HTML comes from other people's repos: only insert it sanitized.
+      if (typeof marked !== 'undefined' && typeof DOMPurify !== 'undefined') {
         const rawBase = `https://raw.githubusercontent.com/${owner}/${repo}/${branchUsed}/`;
         const githubBase = `https://github.com/${owner}/${repo}/blob/${branchUsed}/`;
-
-        html = html.replace(/src="(?!http|\/\/|data:)([^"]+)"/g, (match, path) => {
-          const cleanPath = path.replace(/^\.\//, '');
-          return `src="${rawBase}${cleanPath}"`;
-        });
-
-        html = html.replace(/href="(?!http|\/\/|data:|mailto:|#)([^"]+)"/g, (match, path) => {
-          const cleanPath = path.replace(/^\.\//, '');
-          return `href="${githubBase}${cleanPath}"`;
-        });
-
-        html = html.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
-
-        html = buildProjectSummary(btnEl) + html;
-
-        readmeContent.innerHTML = html;
+        readmeContent.appendChild(renderReadme(await marked.parse(markdown), rawBase, githubBase));
       } else {
-        readmeContent.innerHTML = `<pre>${markdown}</pre>`;
+        const pre = document.createElement('pre');
+        pre.textContent = markdown;
+        readmeContent.appendChild(pre);
       }
     } catch (error) {
       console.error("Failed to load README:", error);
@@ -424,32 +462,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
   folders.forEach(btn => {
     btn.addEventListener('click', () => {
-      const repo = btn.getAttribute('data-repo');
-      const owner = btn.getAttribute('data-owner') || 'hridayanshu236';
-      const branch = btn.getAttribute('data-branch') || 'main';
-      const readmeFile = btn.getAttribute('data-readme') || 'README.md';
-      loadReadme(repo, owner, branch, readmeFile, btn);
+      loadReadme(btn);
+      // In one column the reader sits below the list; bring it into view.
+      if (readerPane && singleColumn.matches) {
+        readerPane.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+      }
     });
   });
 
-  const firstBtn = folders[0];
-  if (firstBtn) {
-    const repo = firstBtn.getAttribute('data-repo');
-    const owner = firstBtn.getAttribute('data-owner') || 'hridayanshu236';
-    const branch = firstBtn.getAttribute('data-branch') || 'main';
-    const readmeFile = firstBtn.getAttribute('data-readme') || 'README.md';
-    loadReadme(repo, owner, branch, readmeFile, firstBtn);
-  }
+  loadReadme(folders[0]);
 })();
 
 /* CERT PREVIEW POSITIONING (Desktop only; disabled on mobile) */
 (function setupCertPreviews() {
   const rows = document.querySelectorAll('.cert-row');
-  const certList = document.querySelector('.cert-list');
 
   rows.forEach(row => {
     const preview = row.querySelector('.cert-preview');
     if (!preview) return;
+    const frame = preview.querySelector('iframe[data-src]');
 
     // Move preview to body to escape overflow clipping contexts
     document.body.appendChild(preview);
@@ -457,6 +488,9 @@ document.addEventListener('DOMContentLoaded', () => {
     function showPreview() {
       // Disabled in mobile view
       if (window.innerWidth <= 768) return;
+
+      // Fetch the PDF on first preview only, not on page load.
+      if (frame && !frame.getAttribute('src')) frame.setAttribute('src', frame.dataset.src);
 
       // Close all others first
       document.querySelectorAll('.cert-preview.active').forEach(p => {
@@ -479,7 +513,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       const maxLeft = Math.max(gap, window.innerWidth - previewWidth - gap);
       preview.style.left = Math.min(Math.max(gap, rect.left), maxLeft) + 'px';
-      preview.style.setProperty('--preview-x', '0');
 
       preview.classList.add('active');
     }
@@ -488,16 +521,10 @@ document.addEventListener('DOMContentLoaded', () => {
       preview.classList.remove('active');
     }
 
-    // Desktop hover & keyboard accessibility only
-    row.addEventListener('mouseenter', () => {
-      if (window.innerWidth > 768) showPreview();
-    });
-    row.addEventListener('mouseleave', () => {
-      if (window.innerWidth > 768) hidePreview();
-    });
-    row.addEventListener('focusin', () => {
-      if (window.innerWidth > 768) showPreview();
-    });
+    // Desktop hover & keyboard accessibility only (showPreview ignores narrow screens)
+    row.addEventListener('mouseenter', showPreview);
+    row.addEventListener('mouseleave', hidePreview);
+    row.addEventListener('focusin', showPreview);
     row.addEventListener('focusout', event => {
       if (!row.contains(event.relatedTarget)) hidePreview();
     });
@@ -525,13 +552,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // Automatically dismiss active preview when scrolling cert-list or window
-  if (certList) {
-    certList.addEventListener('scroll', () => {
-      document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
-    }, { passive: true });
-  }
-
+  // Automatically dismiss active preview when the page scrolls
   window.addEventListener('scroll', () => {
     document.querySelectorAll('.cert-preview.active').forEach(p => p.classList.remove('active'));
   }, { passive: true });
@@ -549,9 +570,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 })();
-// Mobile scroll chaining prevention (prevents nested terminals from triggering window scroll)
+// Mobile scroll chaining prevention for the README reader, the one remaining inner scroll area
 (function setupScrollContainment() {
-  const containers = document.querySelectorAll('.cert-list, .projects-terminal .terminal-body, .explorer-grid');
+  const containers = document.querySelectorAll('.projects-terminal .terminal-body');
   containers.forEach(el => {
     el.addEventListener('touchstart', () => {
       const top = el.scrollTop;

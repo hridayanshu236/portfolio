@@ -5,26 +5,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Hridayanshu Raj Acharya: AI/ML engineer building RAG pipelines, autonomous agents, and production ML systems." />
+    content="Hridayanshu Raj Acharya: software engineer (AI/ML and data) building RAG pipelines, autonomous agents, and production ML systems." />
   <meta name="color-scheme" content="light dark" />
-  <title>Hridayanshu Raj Acharya | AI/ML Engineer</title>
+  <title>Hridayanshu Raj Acharya | Software Engineer (AI/ML and Data)</title>
   <script>
     (() => {
+      let theme = null;
       try {
-        const savedTheme = localStorage.getItem('portfolio-theme');
-        document.documentElement.dataset.theme = savedTheme || 'dark';
+        theme = localStorage.getItem('portfolio-theme');
       } catch (error) {
-        document.documentElement.dataset.theme = 'dark';
+        // Storage can be unavailable; fall back to the system appearance.
       }
+      if (theme !== 'light' && theme !== 'dark') {
+        theme = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+      }
+      document.documentElement.dataset.theme = theme;
     })();
   </script>
-  <link rel="icon" type="image/png" href="about-transparent.png" />
+  <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=20" />
+  <link rel="stylesheet" href="style.css?v=22" />
 </head>
 
 <body>
@@ -32,7 +36,7 @@
   <!-- ========== NAVIGATION (mobile / tablet) ========== -->
   <nav id="navbar">
     <div class="nav-inner">
-      <a href="#home" class="nav-logo" id="nav-logo-link">hridayanshu<span class="cursor">_</span></a>
+      <a href="#home" class="nav-logo">hridayanshu<span class="cursor" aria-hidden="true">_</span></a>
       <ul class="nav-links" id="nav-links-list">
         <li><a href="#about" class="nav-link">about</a></li>
         <li><a href="#experience" class="nav-link">experience</a></li>
@@ -66,8 +70,8 @@
 
   <!-- ========== SIDEBAR (desktop file explorer) ========== -->
   <aside class="sidebar">
-    <div class="sidebar-top">
-      <a href="#home" class="nav-logo sidebar-logo" id="sidebar-logo-link">hridayanshu<span class="cursor">_</span></a>
+    <div>
+      <a href="#home" class="nav-logo sidebar-logo">hridayanshu<span class="cursor" aria-hidden="true">_</span></a>
       <button type="button" class="cmdk-hint" id="cmdk-trigger" aria-label="Open command palette">
         <span>jump to...</span>
         <kbd>/</kbd>
@@ -81,7 +85,6 @@
         <li><a href="#certifications" class="nav-link">certs.log</a></li>
         <li><a href="#contact" class="nav-link">contact.sh</a></li>
       </ul>
-      <!-- Drop your resume file at this path, e.g. resume.pdf next to index.html -->
       <a href="resume.pdf" download="Hridayanshu_Raj_Acharya_Resume.pdf" class="nav-link resume-link"
         id="sidebar-resume-link">
         <span>resume.pdf</span>
@@ -93,7 +96,7 @@
         </svg>
       </a>
     </div>
-    <div class="sidebar-bottom">
+    <div>
       <button type="button" class="theme-toggle sidebar-theme-toggle" data-theme-toggle aria-label="Switch to dark mode"
         aria-pressed="false">
         <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
@@ -109,7 +112,7 @@
       </button>
       <div class="sidebar-socials">
         <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer" class="social-link"
-          aria-label="GitHub profile" id="sidebar-social-github">
+          aria-label="GitHub profile">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"
             aria-hidden="true">
             <path
@@ -117,14 +120,14 @@
           </svg>
         </a>
         <a href="https://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer" class="social-link"
-          aria-label="LinkedIn profile" id="sidebar-social-linkedin">
+          aria-label="LinkedIn profile">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"
             aria-hidden="true">
             <path
               d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
           </svg>
         </a>
-        <a href="mailto:hridayanshu23@gmail.com" class="social-link" aria-label="Send email" id="sidebar-social-email">
+        <a href="mailto:hridayanshu23@gmail.com" class="social-link" aria-label="Send email">
           <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
@@ -132,7 +135,7 @@
           </svg>
         </a>
       </div>
-      <p class="sidebar-clock">kathmandu, np <span class="js-clock">--:--:--</span></p>
+      <p class="sidebar-clock">kathmandu, np <span class="js-clock">--:--</span></p>
     </div>
   </aside>
 
@@ -151,23 +154,26 @@
         </div>
         <div class="terminal-body">
           <p class="prompt-line">whoami</p>
-          <h1 class="hero-name">Hridayanshu Raj Acharya<span class="cursor">_</span></h1>
-          <p class="hero-role" id="hero-role" aria-live="polite">AI/ML Engineer</p>
+          <div class="hero-heading">
+            <img src="assets/avatar.webp" alt="" class="hero-avatar" width="96" height="96" decoding="async">
+            <h1 class="hero-name">Hridayanshu Raj Acharya<span class="cursor" aria-hidden="true">_</span></h1>
+          </div>
+          <p class="hero-role">Software Engineer (AI/ML&nbsp;and&nbsp;Data)</p>
           <p class="hero-desc">
             I build software around machine-learning models: data pipelines, retrieval systems, APIs, and
             user-facing applications.
           </p>
           <div class="hero-meta">
             <span>kathmandu, nepal</span>
-            <span>b.e. computer engineering, 2026</span>
+            <span>b.e. computer engineering, expected&nbsp;2026</span>
           </div>
           <div class="hero-cta">
-            <a href="#projects" class="btn btn-primary" id="hero-view-projects">View the work</a>
-            <a href="mailto:hridayanshu23@gmail.com" class="btn btn-outline" id="hero-contact">Email me</a>
+            <a href="#projects" class="btn btn-primary">View the work</a>
+            <a href="mailto:hridayanshu23@gmail.com" class="btn btn-outline">Email me</a>
           </div>
           <div class="hero-socials">
             <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer" class="social-link"
-              aria-label="GitHub profile" id="social-github">
+              aria-label="GitHub profile">
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"
                 aria-hidden="true">
                 <path
@@ -175,14 +181,14 @@
               </svg>
             </a>
             <a href="https://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer"
-              class="social-link" aria-label="LinkedIn profile" id="social-linkedin">
+              class="social-link" aria-label="LinkedIn profile">
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="currentColor"
                 aria-hidden="true">
                 <path
                   d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
               </svg>
             </a>
-            <a href="mailto:hridayanshu23@gmail.com" class="social-link" aria-label="Send email" id="social-email">
+            <a href="mailto:hridayanshu23@gmail.com" class="social-link" aria-label="Send email">
               <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none"
                 stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"
                 aria-hidden="true">
@@ -191,8 +197,8 @@
               </svg>
             </a>
           </div>
-          <img src="about-transparent.png" alt="Hridayanshu Portrait" class="terminal-portrait-img" width="1065"
-            height="1477" decoding="async">
+          <img src="assets/avatar.webp" alt="Illustrated portrait of Hridayanshu" class="terminal-portrait-img"
+            width="600" height="832" decoding="async">
         </div>
       </div>
     </section>
@@ -204,7 +210,7 @@
           <span class="file-tab">about.md</span>
           <h2 class="section-title">About</h2>
         </div>
-        <article class="terminal about-terminal">
+        <article class="terminal">
           <div class="terminal-bar">
             <div class="mac-buttons" aria-hidden="true">
               <span class="mac-btn close"></span>
@@ -213,7 +219,7 @@
             </div>
             <span class="terminal-path">~/hridayanshu/about.md</span>
           </div>
-          <div class="terminal-body about-content">
+          <div class="terminal-body">
             <p class="about-summary">
               I work across model development, data pipelines, and backend integration. Recent work includes
               fine-tuning a multilingual transformer on 206K+ sentences and building a multi-agent reinforcement
@@ -221,11 +227,11 @@
             </p>
             <p class="about-location">Based in Kathmandu, Nepal</p>
             <dl class="about-details">
-              <div class="about-detail about-detail-education">
+              <div class="about-detail">
                 <dt>education</dt>
                 <dd class="education-entry">
-                  <img src="assets/KU_logo.jpg" alt="Kathmandu University logo" class="organization-logo ku-logo"
-                    width="2048" height="2048" loading="lazy" decoding="async" />
+                  <img src="assets/KU_logo-96.jpg" alt="Kathmandu University logo" class="organization-logo ku-logo"
+                    width="96" height="96" loading="lazy" decoding="async" />
                   <span class="education-copy">Kathmandu University, B.E. Computer Engineering<span>2022 to present,
                       CGPA 3.93 / 4.0</span></span>
                 </dd>
@@ -243,7 +249,7 @@
           <span class="file-tab">experience.log</span>
           <h2 class="section-title">Experience</h2>
         </div>
-        <article class="terminal experience-terminal">
+        <article class="terminal">
           <div class="terminal-bar">
             <div class="mac-buttons" aria-hidden="true">
               <span class="mac-btn close"></span>
@@ -286,61 +292,16 @@
             </div>
             <span class="terminal-path">~/hridayanshu/stack.json</span>
           </div>
-          <div class="terminal-body code-block stack-code-body">
+          <div class="terminal-body stack-code-body">
+            <!-- One .code-content per line keeps each line a single flex item, so arrays wrap with a hanging indent. -->
             <div class="code-lines">
-              <div class="code-line"><span class="tok-punct">{</span></div>
-              <div class="code-line">&nbsp;&nbsp;<span class="tok-key">"ai_ml"</span><span class="tok-punct">:</span>
-                <span class="tok-punct">[</span><span class="tok-string">"LLMs"</span><span class="tok-punct">,</span>
-                <span class="tok-string">"RAG"</span><span class="tok-punct">,</span> <span class="tok-string">"Prompt
-                  Engineering"</span><span class="tok-punct">,</span> <span class="tok-string">"AI Agents"</span><span
-                  class="tok-punct">,</span> <span class="tok-string">"MCP"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"PyTorch"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"YOLO"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"CNN"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"GNN"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Reinforcement
-                  Learning"</span><span class="tok-punct">,</span> <span class="tok-string">"OpenCV"</span><span
-                  class="tok-punct">,</span> <span class="tok-string">"Random Forest"</span><span
-                  class="tok-punct">],</span>
-              </div>
-              <div class="code-line">&nbsp;&nbsp;<span class="tok-key">"data_science"</span><span
-                  class="tok-punct">:</span> <span class="tok-punct">[</span><span
-                  class="tok-string">"NumPy"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Pandas"</span><span class="tok-punct">,</span>
-                <span class="tok-string">"Matplotlib"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Feature Engineering"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Model Evaluation"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Data Annotation"</span><span class="tok-punct">],</span>
-              </div>
-              <div class="code-line">&nbsp;&nbsp;<span class="tok-key">"development"</span><span
-                  class="tok-punct">:</span> <span class="tok-punct">[</span><span
-                  class="tok-string">"Python"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"React.js"</span><span class="tok-punct">,</span>
-                <span class="tok-string">"React Native"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Node.js"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Express.js"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"FastAPI"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"C++"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"JavaScript"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"HTML/CSS"</span><span class="tok-punct">],</span>
-              </div>
-              <div class="code-line">&nbsp;&nbsp;<span class="tok-key">"databases_and_tools"</span><span
-                  class="tok-punct">:</span> <span class="tok-punct">[</span><span
-                  class="tok-string">"MongoDB"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"PostgreSQL"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"MySQL"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"ChromaDB"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"LangChain"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"SQLAlchemy"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Git"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"GitHub"</span><span class="tok-punct">],</span></div>
-              <div class="code-line">&nbsp;&nbsp;<span class="tok-key">"languages"</span><span
-                  class="tok-punct">:</span>
-                <span class="tok-punct">[</span><span class="tok-string">"Nepali"</span><span class="tok-punct">,</span>
-                <span class="tok-string">"English"</span><span class="tok-punct">,</span> <span
-                  class="tok-string">"Hindi"</span><span class="tok-punct">]</span>
-              </div>
-              <div class="code-line"><span class="tok-punct">}</span></div>
+              <div class="code-line"><span class="code-content"><span class="tok-punct">{</span></span></div>
+              <div class="code-line"><span class="code-content code-indent"><span class="tok-key">"ai_ml"</span><span class="tok-punct">: [</span><span class="tok-string">"LLMs"</span><span class="tok-punct">,</span> <span class="tok-string">"RAG"</span><span class="tok-punct">,</span> <span class="tok-string">"Prompt Engineering"</span><span class="tok-punct">,</span> <span class="tok-string">"AI Agents"</span><span class="tok-punct">,</span> <span class="tok-string">"MCP"</span><span class="tok-punct">,</span> <span class="tok-string">"PyTorch"</span><span class="tok-punct">,</span> <span class="tok-string">"YOLO"</span><span class="tok-punct">,</span> <span class="tok-string">"CNN"</span><span class="tok-punct">,</span> <span class="tok-string">"GNN"</span><span class="tok-punct">,</span> <span class="tok-string">"Reinforcement Learning"</span><span class="tok-punct">,</span> <span class="tok-string">"OpenCV"</span><span class="tok-punct">,</span> <span class="tok-string">"Random Forest"</span><span class="tok-punct">],</span></span></div>
+              <div class="code-line"><span class="code-content code-indent"><span class="tok-key">"data_science"</span><span class="tok-punct">: [</span><span class="tok-string">"NumPy"</span><span class="tok-punct">,</span> <span class="tok-string">"Pandas"</span><span class="tok-punct">,</span> <span class="tok-string">"Matplotlib"</span><span class="tok-punct">,</span> <span class="tok-string">"Feature Engineering"</span><span class="tok-punct">,</span> <span class="tok-string">"Model Evaluation"</span><span class="tok-punct">,</span> <span class="tok-string">"Data Annotation"</span><span class="tok-punct">],</span></span></div>
+              <div class="code-line"><span class="code-content code-indent"><span class="tok-key">"development"</span><span class="tok-punct">: [</span><span class="tok-string">"Python"</span><span class="tok-punct">,</span> <span class="tok-string">"React.js"</span><span class="tok-punct">,</span> <span class="tok-string">"React Native"</span><span class="tok-punct">,</span> <span class="tok-string">"Node.js"</span><span class="tok-punct">,</span> <span class="tok-string">"Express.js"</span><span class="tok-punct">,</span> <span class="tok-string">"FastAPI"</span><span class="tok-punct">,</span> <span class="tok-string">"C++"</span><span class="tok-punct">,</span> <span class="tok-string">"JavaScript"</span><span class="tok-punct">,</span> <span class="tok-string">"HTML/CSS"</span><span class="tok-punct">],</span></span></div>
+              <div class="code-line"><span class="code-content code-indent"><span class="tok-key">"databases_and_tools"</span><span class="tok-punct">: [</span><span class="tok-string">"MongoDB"</span><span class="tok-punct">,</span> <span class="tok-string">"PostgreSQL"</span><span class="tok-punct">,</span> <span class="tok-string">"MySQL"</span><span class="tok-punct">,</span> <span class="tok-string">"ChromaDB"</span><span class="tok-punct">,</span> <span class="tok-string">"LangChain"</span><span class="tok-punct">,</span> <span class="tok-string">"SQLAlchemy"</span><span class="tok-punct">,</span> <span class="tok-string">"Git"</span><span class="tok-punct">,</span> <span class="tok-string">"GitHub"</span><span class="tok-punct">],</span></span></div>
+              <div class="code-line"><span class="code-content code-indent"><span class="tok-key">"languages"</span><span class="tok-punct">: [</span><span class="tok-string">"Nepali"</span><span class="tok-punct">,</span> <span class="tok-string">"English"</span><span class="tok-punct">,</span> <span class="tok-string">"Hindi"</span><span class="tok-punct">]</span></span></div>
+              <div class="code-line"><span class="code-content"><span class="tok-punct">}</span></span></div>
             </div>
           </div>
         </div>
@@ -363,8 +324,7 @@
               <span class="explorer-path">~/hridayanshu/work</span>
             </div>
             <div class="explorer-grid">
-              <!-- Folders injected/hardcoded here -->
-              <button class="folder-btn active" data-repo="Ledgr" data-tag="Full-stack AI Developer" data-branch="main"
+              <button class="folder-btn active" aria-current="true" data-repo="Ledgr" data-tag="Full-stack AI Developer"
                 data-desc="A multi-user finance SaaS using multimodal LLMs (Gemini Flash) to extract and query data from receipts and bank statements. A LangChain agent router switches between Text-to-SQL for quantitative queries and vector search for qualitative data. Built with React and FastAPI.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                   fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"
@@ -372,10 +332,9 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">Ledgr</span>
+                <span class="folder-text"><span class="folder-name">Ledgr</span><span class="folder-summary">Multimodal LLM finance SaaS with a LangChain agent router</span></span>
               </button>
               <button class="folder-btn" data-repo="realtime-hatespeech-meet-en-ne" data-tag="AI/ML Developer"
-                data-branch="main"
                 data-desc="Fine-tuned XLM-RoBERTa on 206K plus sentences spanning English, Nepali, and code-switched text, reaching 96.7% accuracy and 0.777 macro F1, ahead of DistilBERT and BERT. Built a Socket.io backend to scan live chat in real-time.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -383,10 +342,10 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">Hate_Speech</span>
+                <span class="folder-text"><span class="folder-name">Hate_Speech</span><span class="folder-summary">XLM-RoBERTa on 206K English and Nepali sentences, 96.7% accuracy</span></span>
               </button>
               <button class="folder-btn" data-repo="Crime_Simulation_AI" data-tag="AI/ML Developer"
-                data-owner="SumiraMakaju" data-branch="main"
+                data-owner="SumiraMakaju"
                 data-desc="Tabular (Random Forest, 86 to 88% F1, 93 to 94% ROC-AUC) and spatial (Graph Neural Network) crime-prediction models, feeding a multi-agent reinforcement learning environment (PettingZoo) to simulate police patrol dispatching.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -394,10 +353,10 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">SmartCrimeAI</span>
+                <span class="folder-text"><span class="folder-name">SmartCrimeAI</span><span class="folder-summary">GNN crime prediction feeding multi-agent RL patrols, 93 to 94% ROC-AUC</span></span>
               </button>
               <button class="folder-btn" data-repo="TamangNetra" data-tag="Full Stack Developer"
-                data-owner="Ssaammmmiitt" data-branch="main" data-readme="readme.md"
+                data-owner="Ssaammmmiitt" data-readme="readme.md"
                 data-desc="Full-stack translation platform on the TMT API, with semaphore-based concurrency and exponential backoff for rate-limit resiliency. A normalized translation cache plus WebSocket integrations enables fast collaboration.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -405,10 +364,9 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">TamangNetra</span>
+                <span class="folder-text"><span class="folder-name">TamangNetra</span><span class="folder-summary">Translation platform on the TMT API, built to survive rate limits</span></span>
               </button>
               <button class="folder-btn" data-repo="EyeSpy" data-tag="Dataset, Model Training & Frontend"
-                data-branch="main"
                 data-desc="Manually annotated 763 HD exam images in YOLO format and trained a detector reaching 0.87 precision, 0.80 recall on cheating behavior, 0.84 F1 on smartphone detection, deployed on a real-time OpenCV pipeline.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -416,10 +374,9 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">EyeSpy</span>
+                <span class="folder-text"><span class="folder-name">EyeSpy</span><span class="folder-summary">YOLO exam-cheating detector, 0.87 precision</span></span>
               </button>
               <button class="folder-btn" data-repo="Hackstreet-Bois" data-tag="Frontend Developer & RAG Data Collection"
-                data-branch="main"
                 data-desc="Used RAG and FAISS vector search to generate adaptive assessments and personalized learning roadmaps, with peer-to-peer tutor matching based on chapter-specific proficiency vectors.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -427,9 +384,9 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">Edu_Assist</span>
+                <span class="folder-text"><span class="folder-name">Edu_Assist</span><span class="folder-summary">RAG and FAISS for adaptive assessments and learning roadmaps</span></span>
               </button>
-              <button class="folder-btn" data-repo="KU_Verse" data-tag="Frontend Developer" data-branch="main"
+              <button class="folder-btn" data-repo="KU_Verse" data-tag="Frontend Developer"
                 data-desc="University social platform with real-time messaging (Socket.io), event hubs, and interest-based networking, plus a personalized feed and Cloudinary and JWT auth.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -437,9 +394,9 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">KU_Verse</span>
+                <span class="folder-text"><span class="folder-name">KU_Verse</span><span class="folder-summary">University social platform with real-time messaging</span></span>
               </button>
-              <button class="folder-btn" data-repo="CinemaGhar" data-tag="Full Stack Developer" data-branch="main"
+              <button class="folder-btn" data-repo="CinemaGhar" data-tag="Full Stack Developer"
                 data-desc="MERN-stack movie booking platform with auth, showtime listings, and ticket reservation, pulling real listings from the TMDB API.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -447,9 +404,9 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">CinemaGhar</span>
+                <span class="folder-text"><span class="folder-name">CinemaGhar</span><span class="folder-summary">MERN movie booking with live TMDB listings</span></span>
               </button>
-              <button class="folder-btn" data-repo="ByteBack" data-tag="Frontend Developer" data-branch="main"
+              <button class="folder-btn" data-repo="ByteBack" data-tag="Frontend Developer"
                 data-desc="Built the React.js frontend for an electronics recycling platform.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -457,10 +414,9 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">ByteBack</span>
+                <span class="folder-text"><span class="folder-name">ByteBack</span><span class="folder-summary">React frontend for an electronics recycling platform</span></span>
               </button>
-              <button class="folder-btn" data-repo="codewave_StockSphere" data-tag="Frontend Developer"
-                data-branch="main" data-readme="ReadME.md"
+              <button class="folder-btn" data-repo="codewave_StockSphere" data-tag="Frontend Developer" data-readme="ReadME.md"
                 data-desc="Responsive React frontend for AI stock price prediction and real-time market analysis.">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
                   stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
@@ -468,7 +424,7 @@
                   <path
                     d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
                 </svg>
-                <span class="folder-name">StockSphere</span>
+                <span class="folder-text"><span class="folder-name">StockSphere</span><span class="folder-summary">React frontend for AI stock price prediction</span></span>
               </button>
             </div>
           </div>
@@ -484,9 +440,9 @@
               <span class="terminal-path" id="readme-path" title="~/hridayanshu/work/Ledgr/README.md"><span class="path-desktop">~/hridayanshu</span><span class="path-mobile">~</span>/work/Ledgr/README.md</span>
               <div class="terminal-actions">
                 <a href="https://github.com/hridayanshu236/Ledgr" target="_blank" rel="noopener noreferrer"
-                  class="repo-link" id="readme-repo-link" aria-label="View on GitHub">
+                  class="repo-link" id="readme-repo-link">
                   <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                     <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
                     <polyline points="15 3 21 3 21 9" />
                     <line x1="10" y1="14" x2="21" y2="3" />
@@ -495,7 +451,7 @@
                 </a>
               </div>
             </div>
-            <div class="terminal-body readme-scroller">
+            <div class="terminal-body">
               <div id="readme-content" class="markdown-body">
                 <div class="readme-loading">
                   <span class="cursor">_</span> fetching README...
@@ -534,41 +490,41 @@
                 <span>Google</span>
               </div>
 
-              <div class="cert-row" tabindex="0" id="cert-google-ai">
+              <div class="cert-row" tabindex="0">
                 <span class="cert-name">Google AI Essentials</span>
                 <div class="cert-right">
                   <a href="https://coursera.org/share/545af1a98d5bf46bdca8d4ba1aac16ed" target="_blank"
-                    rel="noopener noreferrer" class="cert-verify" id="cert-google-ai-verify">verify
+                    rel="noopener noreferrer" class="cert-verify">verify
                     ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip" aria-label="Google AI Essentials certificate preview">
-                  <iframe src="certs/google-ai-essentials.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                  <iframe data-src="certs/google-ai-essentials.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
                     title="Google AI Essentials certificate PDF" loading="lazy" tabindex="-1"></iframe>
                   <div class="cert-preview-label">Google AI Essentials</div>
                 </div>
               </div>
 
-              <div class="cert-row" tabindex="0" id="cert-google-data">
+              <div class="cert-row" tabindex="0">
                 <span class="cert-name">Google Data Analysis with Python Specialization</span>
                 <div class="cert-right">
                   <a href="https://coursera.org/share/7883d39c5e3c723f035e0087305d44a8" target="_blank"
-                    rel="noopener noreferrer" class="cert-verify" id="cert-google-data-verify">verify ↗</a>
+                    rel="noopener noreferrer" class="cert-verify">verify ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip" aria-label="Google Data Analysis certificate preview">
-                  <iframe src="certs/DataAnalysis.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                  <iframe data-src="certs/DataAnalysis.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
                     title="Google Data Analysis certificate PDF" loading="lazy" tabindex="-1"></iframe>
                   <div class="cert-preview-label">Google Data Analysis</div>
                 </div>
               </div>
 
-              <div class="cert-row" tabindex="0" id="cert-google-cloud-genai">
+              <div class="cert-row" tabindex="0">
                 <span class="cert-name">Google Cloud Gen AI Academy APAC 2026 — Cohort 3</span>
                 <div class="cert-right">
                   <a href="https://certificate.hack2skill.com/verify/2026H2S09GCGENAIAPACC3-P02280" target="_blank"
-                    rel="noopener noreferrer" class="cert-verify" id="cert-google-cloud-genai-verify">verify ↗</a>
+                    rel="noopener noreferrer" class="cert-verify">verify ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip" aria-label="Google Cloud Gen AI Academy certificate preview">
-                  <iframe src="certs/Cohort3.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                  <iframe data-src="certs/Cohort3.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
                     title="Google Cloud Gen AI Academy APAC 2026 Cohort 3 certificate PDF" loading="lazy"
                     tabindex="-1"></iframe>
                   <div class="cert-preview-label">Google Cloud Gen AI Academy — Cohort 3</div>
@@ -579,45 +535,45 @@
                 <span>Claude Academy</span>
               </div>
 
-              <div class="cert-row" tabindex="0" id="cert-claude-101">
+              <div class="cert-row" tabindex="0">
                 <span class="cert-name">Claude 101</span>
                 <div class="cert-right">
                   <a href="https://academy.claude.com/verify/a96aa9295384f86cd7f5dd8b13ac3601" target="_blank"
-                    rel="noopener noreferrer" class="cert-verify" id="cert-claude-101-verify">verify ↗</a>
+                    rel="noopener noreferrer" class="cert-verify">verify ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip" aria-label="Claude 101 certificate preview">
-                  <iframe src="certs/claude-101.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                  <iframe data-src="certs/claude-101.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
                     title="Claude 101 certificate PDF" loading="lazy" tabindex="-1"></iframe>
                   <div class="cert-preview-label">Claude 101</div>
                 </div>
               </div>
 
-              <div class="cert-row" tabindex="0" id="cert-claude-mcp-intro">
+              <div class="cert-row" tabindex="0">
                 <span class="cert-name">Introduction to Model Context Protocol</span>
                 <div class="cert-right">
                   <a href="https://academy.claude.com/verify/a678cb0dc579ad9d55a5885537fda88a" target="_blank"
-                    rel="noopener noreferrer" class="cert-verify" id="cert-claude-mcp-intro-verify">verify ↗</a>
+                    rel="noopener noreferrer" class="cert-verify">verify ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip"
                   aria-label="Introduction to Model Context Protocol certificate preview">
                   <iframe
-                    src="certs/introduction-to-model-context-protocol.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                    data-src="certs/introduction-to-model-context-protocol.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
                     title="Introduction to Model Context Protocol certificate PDF" loading="lazy"
                     tabindex="-1"></iframe>
                   <div class="cert-preview-label">Introduction to Model Context Protocol</div>
                 </div>
               </div>
 
-              <div class="cert-row" tabindex="0" id="cert-claude-mcp-advanced">
+              <div class="cert-row" tabindex="0">
                 <span class="cert-name">Model Context Protocol: Advanced Topics</span>
                 <div class="cert-right">
                   <a href="https://academy.claude.com/verify/36fe03d849177f426e2694fb1e546721" target="_blank"
-                    rel="noopener noreferrer" class="cert-verify" id="cert-claude-mcp-advanced-verify">verify ↗</a>
+                    rel="noopener noreferrer" class="cert-verify">verify ↗</a>
                 </div>
                 <div class="cert-preview" role="tooltip"
                   aria-label="Model Context Protocol Advanced Topics certificate preview">
                   <iframe
-                    src="certs/model-context-protocol-advanced-topics.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
+                    data-src="certs/model-context-protocol-advanced-topics.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
                     title="Model Context Protocol Advanced Topics certificate PDF" loading="lazy"
                     tabindex="-1"></iframe>
                   <div class="cert-preview-label">Model Context Protocol: Advanced Topics</div>
@@ -654,17 +610,18 @@
             <div class="curl-block">
               <div class="code-block-head">message.sh</div>
               <div class="curl-body">
-                <p class="curl-line">curl -X POST https://hridayanshu.dev/contact \</p>
+                <p class="curl-line">curl -X POST https://hridayanshuacharya.com.np/contact \</p>
                 <div class="curl-field">
-                  <span class="curl-flag">--name</span>
-                  <input type="text" id="curl-name" class="curl-input" placeholder="&quot;your name&quot;"
-                    autocomplete="name" />
-                  <span class="curl-slash">\</span>
+                  <label class="curl-flag" for="curl-name"><span aria-hidden="true">--name</span><span
+                      class="sr-only">Name</span></label>
+                  <input type="text" id="curl-name" class="curl-input" placeholder="your name" autocomplete="name" />
+                  <span class="curl-slash" aria-hidden="true">\</span>
                 </div>
                 <div class="curl-field">
-                  <span class="curl-flag">--data</span>
-                  <textarea id="curl-message" class="curl-input curl-textarea" rows="3"
-                    placeholder="&quot;say what you're building...&quot;"></textarea>
+                  <label class="curl-flag" for="curl-message"><span aria-hidden="true">--data</span><span
+                      class="sr-only">Message</span></label>
+                  <textarea id="curl-message" class="curl-input" rows="3"
+                    placeholder="say what you're building..." aria-describedby="curl-response"></textarea>
                 </div>
                 <button type="button" class="curl-send" id="curl-send">
                   <span class="curl-send-prompt">$</span> send request
@@ -676,13 +633,14 @@
             <p class="contact-or">or reach me directly</p>
 
             <div class="contact-email-row">
-              <button class="contact-email" id="contact-email-link" type="button"
-                aria-label="Copy email address">hridayanshu23@gmail.com</button>
-              <span class="copy-feedback" id="copy-feedback" role="status" aria-live="polite">copied to clipboard</span>
+              <a class="contact-email"
+                href="mailto:hridayanshu23@gmail.com">hridayanshu23@gmail.com</a>
+              <button type="button" class="copy-email" id="copy-email-btn" data-email="hridayanshu23@gmail.com"
+                aria-label="Copy email address">copy</button>
+              <span class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></span>
             </div>
             <div class="contact-links">
-              <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer" class="contact-link"
-                id="contact-github-link">
+              <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer" class="contact-link">
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
                   <path
                     d="M12 2C6.477 2 2 6.486 2 12.021c0 4.427 2.865 8.184 6.839 9.504.5.093.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.344-3.369-1.344-.455-1.159-1.11-1.467-1.11-1.467-.908-.621.069-.609.069-.609 1.004.071 1.532 1.033 1.532 1.033.892 1.531 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.026A9.56 9.56 0 0 1 12 6.844a9.57 9.57 0 0 1 2.504.338c1.909-1.295 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.594 1.028 2.687 0 3.848-2.338 4.695-4.566 4.943.359.31.679.923.679 1.861 0 1.344-.012 2.428-.012 2.758 0 .268.18.58.688.482A10.024 10.024 0 0 0 22 12.021C22 6.486 17.523 2 12 2Z" />
@@ -690,14 +648,14 @@
                 <span>github</span>
               </a>
               <a href="https://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer"
-                class="contact-link" id="contact-linkedin-link">
+                class="contact-link">
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
                   <path
                     d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065Zm1.782 13.019H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0Z" />
                 </svg>
                 <span>linkedin</span>
               </a>
-              <a href="tel:+9779765987179" class="contact-link" id="contact-phone-link">
+              <a href="tel:+9779765987179" class="contact-link">
                 <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"
                   stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path
@@ -715,7 +673,6 @@
     <footer class="footer">
       <div class="container footer-inner">
         <p>&copy; 2026 <span class="footer-accent">Hridayanshu Raj Acharya</span></p>
-        <!-- <p class="footer-clock">kathmandu, np <span class="js-clock">--:--:--</span></p> -->
       </div>
     </footer>
 
@@ -725,17 +682,20 @@
   <div class="cmdk-overlay" id="cmdk-overlay" role="dialog" aria-modal="true" aria-label="Command palette" hidden>
     <div class="cmdk-panel">
       <div class="cmdk-input-row">
-        <span class="cmdk-prompt">$</span>
+        <span class="cmdk-prompt" aria-hidden="true">$</span>
         <input type="text" id="cmdk-input" class="cmdk-input" placeholder="type a command..." autocomplete="off"
-          spellcheck="false" aria-label="Command input" />
+          spellcheck="false" aria-label="Command input" role="combobox" aria-expanded="true"
+          aria-controls="cmdk-list" aria-autocomplete="list" />
         <kbd class="cmdk-esc">esc</kbd>
       </div>
-      <ul class="cmdk-list" id="cmdk-list" role="listbox"></ul>
+      <ul class="cmdk-list" id="cmdk-list" role="listbox" aria-label="Commands"></ul>
     </div>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="script.js?v=14"></script>
+  <!-- Pinned: marked 15.0.12 is the last release that ships marked.min.js at this path. -->
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.16/dist/purify.min.js"></script>
+  <script src="script.js?v=16"></script>
 </body>
 
 </html>
