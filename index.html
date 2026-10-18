@@ -26,9 +26,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=24" />
+  <link rel="stylesheet" href="style.css?v=30" />
 </head>
 
 <body>
@@ -47,19 +47,6 @@
         <li><a href="resume.pdf" download="Hridayanshu_Raj_Acharya_Resume.pdf" class="nav-link">resume</a></li>
       </ul>
       <div class="nav-actions">
-        <button type="button" class="theme-toggle theme-toggle-compact" data-theme-toggle
-          aria-label="Switch to dark mode" aria-pressed="false">
-          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.7" stroke-linecap="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="3.5" />
-            <path
-              d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
-          </svg>
-          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-            stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20.4 15.3A8.7 8.7 0 0 1 8.7 3.6 8.7 8.7 0 1 0 20.4 15.3Z" />
-          </svg>
-        </button>
         <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-controls="nav-links-list"
           aria-expanded="false">
           <span></span><span></span><span></span>
@@ -97,19 +84,6 @@
       </a>
     </div>
     <div>
-      <button type="button" class="theme-toggle sidebar-theme-toggle" data-theme-toggle aria-label="Switch to dark mode"
-        aria-pressed="false">
-        <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-          stroke-linecap="round" aria-hidden="true">
-          <circle cx="12" cy="12" r="3.5" />
-          <path
-            d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42" />
-        </svg>
-        <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"
-          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M20.4 15.3A8.7 8.7 0 0 1 8.7 3.6 8.7 8.7 0 1 0 20.4 15.3Z" />
-        </svg>
-      </button>
       <div class="sidebar-socials">
         <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer" class="social-link"
           aria-label="GitHub profile">
@@ -146,8 +120,7 @@
       <div class="terminal">
         <div class="terminal-bar">
             <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
-            <span class="terminal-title">profile.md</span>
-            <span class="terminal-tool" aria-hidden="true">zsh</span>
+            <span class="terminal-title">profile.md · zsh</span>
           </div>
         <div class="terminal-body">
           <p class="prompt-line">whoami</p>
@@ -207,8 +180,7 @@
         <article class="terminal">
           <div class="terminal-bar">
             <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
-            <span class="terminal-title">about.md</span>
-            <span class="terminal-tool" aria-hidden="true">less</span>
+            <span class="terminal-title">about.md · less</span>
           </div>
           <div class="terminal-body">
             <p class="about-summary">
@@ -216,18 +188,41 @@
               fine-tuning a multilingual transformer on 206K+ sentences and building a multi-agent reinforcement
               learning system.
             </p>
-            <p class="about-location">Based in Kathmandu, Nepal</p>
-            <dl class="about-details">
-              <div class="about-detail">
-                <dt>education</dt>
-                <dd class="education-entry">
-                  <img src="assets/KU_logo-96.jpg" alt="Kathmandu University logo" class="organization-logo ku-logo"
-                    width="96" height="96" loading="lazy" decoding="async" />
-                  <span class="education-copy">Kathmandu University, B.E. Computer Engineering<span>2022 to present,
-                      CGPA 3.93 / 4.0</span></span>
-                </dd>
-              </div>
-            </dl>
+            <div class="about-education">
+              <h3 class="about-label">education</h3>
+              <ol class="git-log">
+                <li class="git-entry">
+                  <p class="git-when"><time datetime="2022">2022</time> <span aria-hidden="true">-</span><span class="sr-only">to</span> present</p>
+                  <span class="git-node"><img src="assets/ku-logo.jpg" alt="Kathmandu University logo" class="organization-logo" width="120"
+                      height="120" loading="lazy" decoding="async" /></span>
+                  <div class="git-body">
+                    <h4 class="git-title">Kathmandu University <span class="git-ref">present</span></h4>
+                    <p class="git-sub">Bachelor of Engineering, Computer Engineering</p>
+                    <p class="git-grade">CGPA 3.93 / 4.0</p>
+                  </div>
+                </li>
+                <li class="git-entry">
+                  <p class="git-when"><time datetime="2020">2020</time> <span aria-hidden="true">-</span><span class="sr-only">to</span> <time datetime="2022">2022</time></p>
+                  <span class="git-node"><img src="assets/chelsea-logo.jpg" alt="Chelsea World School logo" class="organization-logo" width="120"
+                      height="120" loading="lazy" decoding="async" /></span>
+                  <div class="git-body">
+                    <h4 class="git-title">Chelsea World School</h4>
+                    <p class="git-sub">High School &middot; Computer Science, Physics, Chemistry, Maths</p>
+                    <p class="git-grade">GPA 3.74 / 4.0</p>
+                  </div>
+                </li>
+                <li class="git-entry">
+                  <p class="git-when"><time datetime="2017">2017</time> <span aria-hidden="true">-</span><span class="sr-only">to</span> <time datetime="2020">2020</time></p>
+                  <span class="git-node"><img src="assets/api-logo.jpg" alt="Api School logo" class="organization-logo" width="120"
+                      height="120" loading="lazy" decoding="async" /></span>
+                  <div class="git-body">
+                    <h4 class="git-title">Api School</h4>
+                    <p class="git-sub">Secondary Education Examination</p>
+                    <p class="git-grade">GPA 4.0 / 4.0</p>
+                  </div>
+                </li>
+              </ol>
+            </div>
           </div>
         </article>
       </div>
@@ -240,18 +235,18 @@
         <article class="terminal">
           <div class="terminal-bar">
             <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
-            <span class="terminal-title">experience.log</span>
-            <span class="terminal-tool" aria-hidden="true">git log</span>
+            <span class="terminal-title">experience.log · git log</span>
           </div>
           <div class="terminal-body experience-content">
             <ol class="git-log">
               <li class="git-entry">
-                <p class="git-when"><time datetime="2026-09">Sep 2026</time> <span aria-hidden="true">&rarr;</span><span class="sr-only">to</span> present</p>
-                <img src="assets/Xuno_logo.jpg" alt="Xuno logo" class="organization-logo experience-logo" width="1024"
-                  height="1024" loading="lazy" decoding="async" />
+                <p class="git-when"><time datetime="2026-09">Sep 2026</time> <span aria-hidden="true">-</span><span class="sr-only">to</span> present</p>
+                <span class="git-node"><img src="assets/xuno-logo.jpg" alt="Xuno logo" class="organization-logo" width="120"
+                    height="120" loading="lazy" decoding="async" /></span>
                 <div class="git-body">
-                  <h3>Software Developer (AI/ML and Data)</h3>
-                  <p class="git-meta">Xuno &middot; internship &middot; Kathmandu, Nepal / hybrid</p>
+                  <h3 class="git-title">Software Developer (AI/ML and Data) <span class="git-ref">present</span></h3>
+                  <p class="git-sub">Xuno &middot; internship</p>
+                  <p class="git-meta">Kathmandu, Nepal &middot; hybrid</p>
                 </div>
               </li>
             </ol>
@@ -267,8 +262,7 @@
         <div class="terminal">
           <div class="terminal-bar">
             <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
-            <span class="terminal-title">stack.json</span>
-            <span class="terminal-tool" aria-hidden="true">vim</span>
+            <span class="terminal-title">stack.json · vim</span>
           </div>
           <div class="terminal-body stack-code-body">
             <!-- One .code-content per line keeps each line a single flex item, so arrays wrap with a hanging indent. -->
@@ -290,12 +284,10 @@
     <section id="projects" class="section">
       <div class="container">
         <h2 class="section-title">Work</h2>
-        <p class="projects-note">Select a project to read its README.</p>
-
         <div class="terminal">
           <div class="terminal-bar">
             <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
-            <span class="terminal-title" id="readme-path" title="projects/Ledgr/README.md">projects/Ledgr/README.md</span>
+            <span class="terminal-title" id="readme-path" title="Ledgr/README.md · less">Ledgr/README.md · less</span>
             <div class="terminal-actions">
               <a href="https://github.com/hridayanshu236/Ledgr" target="_blank" rel="noopener noreferrer"
                 class="repo-link" id="readme-repo-link">
@@ -365,8 +357,7 @@
         <div class="terminal">
           <div class="terminal-bar">
             <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
-            <span class="terminal-title">certs.log</span>
-            <span class="terminal-tool" aria-hidden="true">ls</span>
+            <span class="terminal-title">certs.log · ls</span>
           </div>
           <div class="terminal-body cert-terminal-body">
             <div class="cert-list">
@@ -403,7 +394,7 @@
               </div>
 
               <div class="cert-row" tabindex="0">
-                <span class="cert-name">Google Cloud Gen AI Academy APAC 2026 — Cohort 3</span>
+                <span class="cert-name">Google Cloud Gen AI Academy APAC 2026, Cohort 3</span>
                 <div class="cert-right">
                   <a href="https://certificate.hack2skill.com/verify/2026H2S09GCGENAIAPACC3-P02280" target="_blank"
                     rel="noopener noreferrer" class="cert-verify">verify ↗</a>
@@ -412,7 +403,7 @@
                   <iframe data-src="certs/Cohort3.pdf#page=1&amp;toolbar=0&amp;navpanes=0&amp;scrollbar=0"
                     title="Google Cloud Gen AI Academy APAC 2026 Cohort 3 certificate PDF" loading="lazy"
                     tabindex="-1"></iframe>
-                  <div class="cert-preview-label">Google Cloud Gen AI Academy — Cohort 3</div>
+                  <div class="cert-preview-label">Google Cloud Gen AI Academy, Cohort 3</div>
                 </div>
               </div>
 
@@ -478,8 +469,7 @@
         <div class="terminal">
           <div class="terminal-bar">
             <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
-            <span class="terminal-title">contact.sh</span>
-            <span class="terminal-tool" aria-hidden="true">zsh</span>
+            <span class="terminal-title">contact.sh · zsh</span>
           </div>
           <div class="terminal-body contact-inner">
             <p class="prompt-line">./contact.sh</p>
@@ -516,7 +506,7 @@
     <!-- ========== FOOTER ========== -->
     <footer class="footer">
       <div class="container footer-inner">
-        <p>&copy; 2026 <span class="footer-accent">Hridayanshu Raj Acharya</span></p>
+        <p>&copy; 2026 Hridayanshu Raj Acharya</p>
       </div>
     </footer>
 
@@ -539,7 +529,7 @@
   <!-- Pinned: marked 15.0.12 is the last release that ships marked.min.js at this path. -->
   <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.16/dist/purify.min.js"></script>
-  <script src="script.js?v=17"></script>
+  <script src="script.js?v=21"></script>
 </body>
 
 </html>

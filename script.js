@@ -1,24 +1,8 @@
-/* THEME */
-const themeToggles = document.querySelectorAll('[data-theme-toggle]');
+/* THEME: follows the system appearance; the command palette can override it */
+const lightSchemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
 
-function updateThemeControls(theme) {
-  const isDark = theme === 'dark';
-  themeToggles.forEach(toggle => {
-    const nextTheme = isDark ? 'light' : 'dark';
-    toggle.setAttribute('aria-pressed', String(isDark));
-    toggle.setAttribute('aria-label', `Switch to ${nextTheme} mode`);
-  });
-}
-
-function setTheme(theme, persist = false) {
-  document.documentElement.dataset.theme = theme;
-  updateThemeControls(theme);
-  if (!persist) return;
-  try {
-    localStorage.setItem('portfolio-theme', theme);
-  } catch (error) {
-    // The theme still applies when storage is unavailable.
-  }
+function systemTheme() {
+  return lightSchemeQuery && lightSchemeQuery.matches ? 'light' : 'dark';
 }
 
 function getSavedTheme() {
@@ -30,42 +14,37 @@ function getSavedTheme() {
   }
 }
 
-setTheme(document.documentElement.dataset.theme || 'dark');
+// theme: 'light', 'dark', or 'system' (forget the override)
+function setTheme(theme) {
+  try {
+    if (theme === 'system') localStorage.removeItem('portfolio-theme');
+    else localStorage.setItem('portfolio-theme', theme);
+  } catch (error) {
+    // The theme still applies when storage is unavailable.
+  }
+  document.documentElement.dataset.theme = theme === 'system' ? systemTheme() : theme;
+}
 
-themeToggles.forEach(toggle => {
-  toggle.addEventListener('click', () => {
-    const nextTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-    setTheme(nextTheme, true);
-  });
-});
-
-// Follow the system appearance until the visitor picks a theme with the toggle.
-const lightSchemeQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: light)') : null;
 if (lightSchemeQuery && lightSchemeQuery.addEventListener) {
-  lightSchemeQuery.addEventListener('change', event => {
-    if (!getSavedTheme()) setTheme(event.matches ? 'light' : 'dark');
+  lightSchemeQuery.addEventListener('change', () => {
+    if (!getSavedTheme()) document.documentElement.dataset.theme = systemTheme();
   });
 }
 
-/* NAVBAR SCROLL + ACTIVE LINK */
+/* NAVBAR SCROLL (the active link follows the active window, see setupWindowFocus) */
 const navbar = document.getElementById('navbar');
 const navLinks = document.querySelectorAll('.nav-link');
-const sections = document.querySelectorAll('section[id]');
 
 function onScroll() {
   navbar.classList.toggle('scrolled', window.scrollY > 40);
+}
 
-  const scrollMid = window.scrollY + window.innerHeight / 2;
-  sections.forEach(section => {
-    const top = section.offsetTop;
-    const bottom = top + section.offsetHeight;
-    const id = section.getAttribute('id');
-    const isActive = scrollMid >= top && scrollMid < bottom;
-    document.querySelectorAll(`.nav-link[href="#${id}"]`).forEach(link => {
-      link.classList.toggle('active', isActive);
-      if (isActive) link.setAttribute('aria-current', 'location');
-      else link.removeAttribute('aria-current');
-    });
+function setActiveLink(sectionId) {
+  navLinks.forEach(link => {
+    const isActive = link.getAttribute('href') === `#${sectionId}`;
+    link.classList.toggle('active', isActive);
+    if (isActive) link.setAttribute('aria-current', 'location');
+    else link.removeAttribute('aria-current');
   });
 }
 
@@ -130,7 +109,7 @@ if (copyEmailBtn && copyFeedback) {
   });
 }
 
-/* CONTACT FORM — builds a prefilled mailto: and "sends" it */
+/* CONTACT FORM: builds a prefilled mailto: and "sends" it */
 (function contactForm() {
   const sendBtn = document.getElementById('contact-send');
   const nameInput = document.getElementById('contact-name');
@@ -151,7 +130,7 @@ if (copyEmailBtn && copyFeedback) {
     const message = messageInput.value.trim();
 
     if (!message) {
-      showResponse('→ 400 Bad Request: write a message first', true);
+      showResponse('Write a message first.', true);
       messageInput.setAttribute('aria-invalid', 'true');
       messageInput.focus();
       return;
@@ -159,12 +138,12 @@ if (copyEmailBtn && copyFeedback) {
 
     messageInput.removeAttribute('aria-invalid');
     const subject = encodeURIComponent(`Portfolio contact${name ? ' from ' + name : ''}`);
-    const bodyLines = [message, '', name ? `— ${name}` : ''].join('\n');
+    const bodyLines = [message, '', name].join('\n');
     const body = encodeURIComponent(bodyLines);
     const mailto = `mailto:${EMAIL}?subject=${subject}&body=${body}`;
 
     // A mailto: link can't report whether a mail app opened, so don't claim success.
-    showResponse(`→ opening your mail app… nothing opened? email ${EMAIL}`, false);
+    showResponse(`Opening your mail app. If nothing opens, email ${EMAIL}.`, false);
     window.location.href = mailto;
   });
 
@@ -195,6 +174,9 @@ if (copyEmailBtn && copyFeedback) {
     { label: 'github', hint: 'external ↗', action: () => openLink('https://github.com/hridayanshu236') },
     { label: 'linkedin', hint: 'external ↗', action: () => openLink('https://linkedin.com/in/hridayanshu23') },
     { label: 'email', hint: 'mailto', action: () => openLink('mailto:hridayanshu23@gmail.com') },
+    { label: 'theme: light', hint: 'appearance', action: () => { setTheme('light'); close(); } },
+    { label: 'theme: dark', hint: 'appearance', action: () => { setTheme('dark'); close(); } },
+    { label: 'theme: system', hint: 'appearance', action: () => { setTheme('system'); close(); } },
   ];
 
   let filtered = commands.slice();
@@ -315,7 +297,7 @@ if (copyEmailBtn && copyFeedback) {
 })();
 
 
-/* LIVE CLOCK — Kathmandu local time (hours and minutes; ticking seconds is peripheral motion) */
+/* LIVE CLOCK: Kathmandu local time (hours and minutes; ticking seconds is peripheral motion) */
 const clockEls = document.querySelectorAll('.js-clock');
 
 function updateClock() {
@@ -395,10 +377,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tag = btnEl.getAttribute('data-tag');
     return `<div class="project-summary">
-      <div class="project-summary-head">
-        <span>Project overview</span>
-        ${tag ? `<span class="project-summary-role">// Role: ${tag}</span>` : ''}
-      </div>
+      ${tag ? `<p class="project-summary-role">Role: ${tag}</p>` : ''}
       <p>${desc}</p>
     </div>`;
   }
@@ -415,7 +394,9 @@ document.addEventListener('DOMContentLoaded', () => {
     btnEl.classList.add('active');
     btnEl.setAttribute('aria-current', 'true');
 
-    readmePath.textContent = `projects/${repo}/${readmeFile}`;
+    // Terminal.app-style title: "document · program"
+    const projectName = btnEl.querySelector('.folder-name').textContent;
+    readmePath.textContent = `${projectName}/${readmeFile} · less`;
     readmePath.title = readmePath.textContent;
     readmeRepoLink.href = `https://github.com/${owner}/${repo}`;
 
@@ -570,7 +551,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 })();
-/* ACTIVE WINDOW — the window crossing the middle of the viewport gets the colored buttons,
+/* ACTIVE WINDOW: the window crossing the middle of the viewport gets the colored buttons,
    like the focused window on macOS. Purely decorative. */
 (function setupWindowFocus() {
   const windows = document.querySelectorAll('.terminal');
@@ -582,6 +563,8 @@ document.addEventListener('DOMContentLoaded', () => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       windows.forEach(win => win.classList.toggle('is-focused', win === entry.target));
+      const section = entry.target.closest('section[id]');
+      if (section) setActiveLink(section.id);
     });
   }, { rootMargin: '-45% 0px -45% 0px' });
 
