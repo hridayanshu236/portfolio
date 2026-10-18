@@ -130,12 +130,12 @@ if (copyEmailBtn && copyFeedback) {
   });
 }
 
-/* CURL CONTACT BLOCK — builds a prefilled mailto: and "sends" it */
-(function curlContact() {
-  const sendBtn = document.getElementById('curl-send');
-  const nameInput = document.getElementById('curl-name');
-  const messageInput = document.getElementById('curl-message');
-  const response = document.getElementById('curl-response');
+/* CONTACT FORM — builds a prefilled mailto: and "sends" it */
+(function contactForm() {
+  const sendBtn = document.getElementById('contact-send');
+  const nameInput = document.getElementById('contact-name');
+  const messageInput = document.getElementById('contact-message');
+  const response = document.getElementById('contact-response');
   if (!sendBtn || !nameInput || !messageInput || !response) return;
 
   const EMAIL = 'hridayanshu23@gmail.com';
@@ -185,8 +185,8 @@ if (copyEmailBtn && copyFeedback) {
     { label: 'about', hint: 'about.md', action: () => go('#about') },
     { label: 'experience', hint: 'experience.log', action: () => go('#experience') },
     { label: 'stack', hint: 'stack.json', action: () => go('#skills') },
-    { label: 'projects', hint: 'log/', action: () => go('#projects') },
-    { label: 'work', hint: 'log/', action: () => go('#projects') },
+    { label: 'projects', hint: 'projects/', action: () => go('#projects') },
+    { label: 'work', hint: 'projects/', action: () => go('#projects') },
     { label: 'certifications', hint: 'certs.log', action: () => go('#certifications') },
     { label: 'certs', hint: 'certs.log', action: () => go('#certifications') },
     { label: 'contact', hint: 'contact.sh', action: () => go('#contact') },
@@ -348,7 +348,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const readmeContent = document.getElementById('readme-content');
   const readmePath = document.getElementById('readme-path');
   const readmeRepoLink = document.getElementById('readme-repo-link');
-  const readerPane = document.querySelector('.projects-terminal');
+  const readerPane = document.querySelector('.projects-reader');
   const singleColumn = window.matchMedia('(max-width: 800px)');
 
   if (!folders.length || !readmeContent) return;
@@ -415,8 +415,8 @@ document.addEventListener('DOMContentLoaded', () => {
     btnEl.classList.add('active');
     btnEl.setAttribute('aria-current', 'true');
 
-    readmePath.title = `~/hridayanshu/work/${repo}/${readmeFile}`;
-    readmePath.innerHTML = `<span class="path-desktop">~/hridayanshu</span><span class="path-mobile">~</span>/work/${repo}/${readmeFile}`;
+    readmePath.textContent = `projects/${repo}/${readmeFile}`;
+    readmePath.title = readmePath.textContent;
     readmeRepoLink.href = `https://github.com/${owner}/${repo}`;
 
     readmeContent.innerHTML = '<div class="readme-loading"><span class="cursor" aria-hidden="true">_</span> fetching README...</div>';
@@ -570,9 +570,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }, { passive: true });
 })();
+/* ACTIVE WINDOW — the window crossing the middle of the viewport gets the colored buttons,
+   like the focused window on macOS. Purely decorative. */
+(function setupWindowFocus() {
+  const windows = document.querySelectorAll('.terminal');
+  if (!windows.length) return;
+  windows[0].classList.add('is-focused');
+  if (!('IntersectionObserver' in window)) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      windows.forEach(win => win.classList.toggle('is-focused', win === entry.target));
+    });
+  }, { rootMargin: '-45% 0px -45% 0px' });
+
+  windows.forEach(win => observer.observe(win));
+})();
+
 // Mobile scroll chaining prevention for the README reader, the one remaining inner scroll area
 (function setupScrollContainment() {
-  const containers = document.querySelectorAll('.projects-terminal .terminal-body');
+  const containers = document.querySelectorAll('.projects-reader');
   containers.forEach(el => {
     el.addEventListener('touchstart', () => {
       const top = el.scrollTop;

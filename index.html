@@ -28,7 +28,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="style.css?v=22" />
+  <link rel="stylesheet" href="style.css?v=24" />
 </head>
 
 <body>
@@ -81,7 +81,7 @@
         <li><a href="#about" class="nav-link">about.md</a></li>
         <li><a href="#experience" class="nav-link">experience.log</a></li>
         <li><a href="#skills" class="nav-link">stack.json</a></li>
-        <li><a href="#projects" class="nav-link">log/</a></li>
+        <li><a href="#projects" class="nav-link">projects/</a></li>
         <li><a href="#certifications" class="nav-link">certs.log</a></li>
         <li><a href="#contact" class="nav-link">contact.sh</a></li>
       </ul>
@@ -145,13 +145,10 @@
     <section id="home" class="hero">
       <div class="terminal">
         <div class="terminal-bar">
-          <div class="mac-buttons">
-            <span class="mac-btn close"></span>
-            <span class="mac-btn minimize"></span>
-            <span class="mac-btn expand"></span>
+            <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
+            <span class="terminal-title">profile.md</span>
+            <span class="terminal-tool" aria-hidden="true">zsh</span>
           </div>
-          <span class="terminal-path">~/hridayanshu/profile.md</span>
-        </div>
         <div class="terminal-body">
           <p class="prompt-line">whoami</p>
           <div class="hero-heading">
@@ -206,18 +203,12 @@
     <!-- ========== ABOUT ========== -->
     <section id="about" class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="file-tab">about.md</span>
-          <h2 class="section-title">About</h2>
-        </div>
+        <h2 class="section-title">About</h2>
         <article class="terminal">
           <div class="terminal-bar">
-            <div class="mac-buttons" aria-hidden="true">
-              <span class="mac-btn close"></span>
-              <span class="mac-btn minimize"></span>
-              <span class="mac-btn expand"></span>
-            </div>
-            <span class="terminal-path">~/hridayanshu/about.md</span>
+            <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
+            <span class="terminal-title">about.md</span>
+            <span class="terminal-tool" aria-hidden="true">less</span>
           </div>
           <div class="terminal-body">
             <p class="about-summary">
@@ -245,32 +236,25 @@
     <!-- ========== EXPERIENCE ========== -->
     <section id="experience" class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="file-tab">experience.log</span>
-          <h2 class="section-title">Experience</h2>
-        </div>
+        <h2 class="section-title">Experience</h2>
         <article class="terminal">
           <div class="terminal-bar">
-            <div class="mac-buttons" aria-hidden="true">
-              <span class="mac-btn close"></span>
-              <span class="mac-btn minimize"></span>
-              <span class="mac-btn expand"></span>
-            </div>
-            <span class="terminal-path">~/hridayanshu/experience.log</span>
+            <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
+            <span class="terminal-title">experience.log</span>
+            <span class="terminal-tool" aria-hidden="true">git log</span>
           </div>
           <div class="terminal-body experience-content">
-            <img src="assets/Xuno_logo.jpg" alt="Xuno logo" class="organization-logo experience-logo" width="1024"
-              height="1024" loading="lazy" decoding="async" />
-            <div class="experience-main">
-              <div class="experience-heading">
-                <div>
-                  <p class="experience-label">Xuno &middot; Internship</p>
+            <ol class="git-log">
+              <li class="git-entry">
+                <p class="git-when"><time datetime="2026-09">Sep 2026</time> <span aria-hidden="true">&rarr;</span><span class="sr-only">to</span> present</p>
+                <img src="assets/Xuno_logo.jpg" alt="Xuno logo" class="organization-logo experience-logo" width="1024"
+                  height="1024" loading="lazy" decoding="async" />
+                <div class="git-body">
                   <h3>Software Developer (AI/ML and Data)</h3>
+                  <p class="git-meta">Xuno &middot; internship &middot; Kathmandu, Nepal / hybrid</p>
                 </div>
-                <p class="experience-date"><time datetime="2026-09">Sep 2026</time> &ndash; Present</p>
-              </div>
-              <p class="experience-location">Kathmandu, Nepal / Hybrid</p>
-            </div>
+              </li>
+            </ol>
           </div>
         </article>
       </div>
@@ -279,18 +263,12 @@
     <!-- ========== SKILLS ========== -->
     <section id="skills" class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="file-tab">stack.json</span>
-          <h2 class="section-title">Stack</h2>
-        </div>
+        <h2 class="section-title">Stack</h2>
         <div class="terminal">
           <div class="terminal-bar">
-            <div class="mac-buttons">
-              <span class="mac-btn close"></span>
-              <span class="mac-btn minimize"></span>
-              <span class="mac-btn expand"></span>
-            </div>
-            <span class="terminal-path">~/hridayanshu/stack.json</span>
+            <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
+            <span class="terminal-title">stack.json</span>
+            <span class="terminal-tool" aria-hidden="true">vim</span>
           </div>
           <div class="terminal-body stack-code-body">
             <!-- One .code-content per line keeps each line a single flex item, so arrays wrap with a hanging indent. -->
@@ -311,150 +289,63 @@
     <!-- ========== PROJECTS ========== -->
     <section id="projects" class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="file-tab">log/</span>
-          <h2 class="section-title">Work</h2>
-        </div>
-        <p class="projects-note">Select a folder to view its README.</p>
+        <h2 class="section-title">Work</h2>
+        <p class="projects-note">Select a project to read its README.</p>
 
-        <div class="projects-layout">
-          <!-- Left: File Explorer -->
-          <div class="projects-explorer">
-            <div class="explorer-header">
-              <span class="explorer-path">~/hridayanshu/work</span>
-            </div>
-            <div class="explorer-grid">
-              <button class="folder-btn active" aria-current="true" data-repo="Ledgr" data-tag="Full-stack AI Developer"
-                data-desc="A multi-user finance SaaS using multimodal LLMs (Gemini Flash) to extract and query data from receipts and bank statements. A LangChain agent router switches between Text-to-SQL for quantitative queries and vector search for qualitative data. Built with React and FastAPI.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                  fill="var(--accent-soft)" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round"
-                  stroke-linejoin="round" class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
+        <div class="terminal">
+          <div class="terminal-bar">
+            <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
+            <span class="terminal-title" id="readme-path" title="projects/Ledgr/README.md">projects/Ledgr/README.md</span>
+            <div class="terminal-actions">
+              <a href="https://github.com/hridayanshu236/Ledgr" target="_blank" rel="noopener noreferrer"
+                class="repo-link" id="readme-repo-link">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  <polyline points="15 3 21 3 21 9" />
+                  <line x1="10" y1="14" x2="21" y2="3" />
                 </svg>
-                <span class="folder-text"><span class="folder-name">Ledgr</span><span class="folder-summary">Multimodal LLM finance SaaS with a LangChain agent router</span></span>
-              </button>
-              <button class="folder-btn" data-repo="realtime-hatespeech-meet-en-ne" data-tag="AI/ML Developer"
-                data-desc="Fine-tuned XLM-RoBERTa on 206K plus sentences spanning English, Nepali, and code-switched text, reaching 96.7% accuracy and 0.777 macro F1, ahead of DistilBERT and BERT. Built a Socket.io backend to scan live chat in real-time.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">Hate_Speech</span><span class="folder-summary">XLM-RoBERTa on 206K English and Nepali sentences, 96.7% accuracy</span></span>
-              </button>
-              <button class="folder-btn" data-repo="Crime_Simulation_AI" data-tag="AI/ML Developer"
-                data-owner="SumiraMakaju"
-                data-desc="Tabular (Random Forest, 86 to 88% F1, 93 to 94% ROC-AUC) and spatial (Graph Neural Network) crime-prediction models, feeding a multi-agent reinforcement learning environment (PettingZoo) to simulate police patrol dispatching.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">SmartCrimeAI</span><span class="folder-summary">GNN crime prediction feeding multi-agent RL patrols, 93 to 94% ROC-AUC</span></span>
-              </button>
-              <button class="folder-btn" data-repo="TamangNetra" data-tag="Full Stack Developer"
-                data-owner="Ssaammmmiitt" data-readme="readme.md"
-                data-desc="Full-stack translation platform on the TMT API, with semaphore-based concurrency and exponential backoff for rate-limit resiliency. A normalized translation cache plus WebSocket integrations enables fast collaboration.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">TamangNetra</span><span class="folder-summary">Translation platform on the TMT API, built to survive rate limits</span></span>
-              </button>
-              <button class="folder-btn" data-repo="EyeSpy" data-tag="Dataset, Model Training & Frontend"
-                data-desc="Manually annotated 763 HD exam images in YOLO format and trained a detector reaching 0.87 precision, 0.80 recall on cheating behavior, 0.84 F1 on smartphone detection, deployed on a real-time OpenCV pipeline.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">EyeSpy</span><span class="folder-summary">YOLO exam-cheating detector, 0.87 precision</span></span>
-              </button>
-              <button class="folder-btn" data-repo="Hackstreet-Bois" data-tag="Frontend Developer & RAG Data Collection"
-                data-desc="Used RAG and FAISS vector search to generate adaptive assessments and personalized learning roadmaps, with peer-to-peer tutor matching based on chapter-specific proficiency vectors.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">Edu_Assist</span><span class="folder-summary">RAG and FAISS for adaptive assessments and learning roadmaps</span></span>
-              </button>
-              <button class="folder-btn" data-repo="KU_Verse" data-tag="Frontend Developer"
-                data-desc="University social platform with real-time messaging (Socket.io), event hubs, and interest-based networking, plus a personalized feed and Cloudinary and JWT auth.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">KU_Verse</span><span class="folder-summary">University social platform with real-time messaging</span></span>
-              </button>
-              <button class="folder-btn" data-repo="CinemaGhar" data-tag="Full Stack Developer"
-                data-desc="MERN-stack movie booking platform with auth, showtime listings, and ticket reservation, pulling real listings from the TMDB API.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">CinemaGhar</span><span class="folder-summary">MERN movie booking with live TMDB listings</span></span>
-              </button>
-              <button class="folder-btn" data-repo="ByteBack" data-tag="Frontend Developer"
-                data-desc="Built the React.js frontend for an electronics recycling platform.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">ByteBack</span><span class="folder-summary">React frontend for an electronics recycling platform</span></span>
-              </button>
-              <button class="folder-btn" data-repo="codewave_StockSphere" data-tag="Frontend Developer" data-readme="ReadME.md"
-                data-desc="Responsive React frontend for AI stock price prediction and real-time market analysis.">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="var(--surface)"
-                  stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"
-                  class="folder-icon">
-                  <path
-                    d="M4 20h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.93a2 2 0 0 1-1.66-.9l-.82-1.2A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13c0 1.1.9 2 2 2Z" />
-                </svg>
-                <span class="folder-text"><span class="folder-name">StockSphere</span><span class="folder-summary">React frontend for AI stock price prediction</span></span>
-              </button>
+                open repo
+              </a>
             </div>
           </div>
-
-          <!-- Right: Terminal Reader -->
-          <div class="projects-terminal terminal">
-            <div class="terminal-bar">
-              <div class="mac-buttons">
-                <span class="mac-btn close"></span>
-                <span class="mac-btn minimize"></span>
-                <span class="mac-btn expand"></span>
-              </div>
-              <span class="terminal-path" id="readme-path" title="~/hridayanshu/work/Ledgr/README.md"><span class="path-desktop">~/hridayanshu</span><span class="path-mobile">~</span>/work/Ledgr/README.md</span>
-              <div class="terminal-actions">
-                <a href="https://github.com/hridayanshu236/Ledgr" target="_blank" rel="noopener noreferrer"
-                  class="repo-link" id="readme-repo-link">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
-                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                    <polyline points="15 3 21 3 21 9" />
-                    <line x1="10" y1="14" x2="21" y2="3" />
-                  </svg>
-                  open repo
-                </a>
-              </div>
+          <div class="projects-layout">
+            <div class="explorer-grid">
+              <button type="button" class="folder-btn active" aria-current="true" data-repo="Ledgr" data-tag="Full-stack AI Developer" data-desc="A multi-user finance SaaS using multimodal LLMs (Gemini Flash) to extract and query data from receipts and bank statements. A LangChain agent router switches between Text-to-SQL for quantitative queries and vector search for qualitative data. Built with React and FastAPI.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">Ledgr</span><span class="folder-result"></span><span class="folder-summary">Multimodal LLM finance SaaS with a LangChain agent router</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="realtime-hatespeech-meet-en-ne" data-tag="AI/ML Developer" data-desc="Fine-tuned XLM-RoBERTa on 206K plus sentences spanning English, Nepali, and code-switched text, reaching 96.7% accuracy and 0.777 macro F1, ahead of DistilBERT and BERT. Built a Socket.io backend to scan live chat in real-time.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">Hate_Speech</span><span class="folder-result"><span aria-hidden="true">96.7% acc</span><span class="sr-only">96.7% accuracy</span></span><span class="folder-summary">XLM-RoBERTa on 206K English and Nepali sentences</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="Crime_Simulation_AI" data-tag="AI/ML Developer" data-owner="SumiraMakaju" data-desc="Tabular (Random Forest, 86 to 88% F1, 93 to 94% ROC-AUC) and spatial (Graph Neural Network) crime-prediction models, feeding a multi-agent reinforcement learning environment (PettingZoo) to simulate police patrol dispatching.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">SmartCrimeAI</span><span class="folder-result"><span aria-hidden="true">93&ndash;94% AUC</span><span class="sr-only">93 to 94% ROC-AUC</span></span><span class="folder-summary">GNN crime prediction feeding multi-agent RL patrols</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="TamangNetra" data-tag="Full Stack Developer" data-owner="Ssaammmmiitt" data-readme="readme.md" data-desc="Full-stack translation platform on the TMT API, with semaphore-based concurrency and exponential backoff for rate-limit resiliency. A normalized translation cache plus WebSocket integrations enables fast collaboration.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">TamangNetra</span><span class="folder-result"></span><span class="folder-summary">Translation platform on the TMT API, built to survive rate limits</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="EyeSpy" data-tag="Dataset, Model Training & Frontend" data-desc="Manually annotated 763 HD exam images in YOLO format and trained a detector reaching 0.87 precision, 0.80 recall on cheating behavior, 0.84 F1 on smartphone detection, deployed on a real-time OpenCV pipeline.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">EyeSpy</span><span class="folder-result"><span aria-hidden="true">0.87 prec</span><span class="sr-only">0.87 precision</span></span><span class="folder-summary">YOLO exam-cheating detector on 763 labeled images</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="Hackstreet-Bois" data-tag="Frontend Developer & RAG Data Collection" data-desc="Used RAG and FAISS vector search to generate adaptive assessments and personalized learning roadmaps, with peer-to-peer tutor matching based on chapter-specific proficiency vectors.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">Edu_Assist</span><span class="folder-result"></span><span class="folder-summary">RAG and FAISS for adaptive assessments and learning roadmaps</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="KU_Verse" data-tag="Frontend Developer" data-desc="University social platform with real-time messaging (Socket.io), event hubs, and interest-based networking, plus a personalized feed and Cloudinary and JWT auth.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">KU_Verse</span><span class="folder-result"></span><span class="folder-summary">University social platform with real-time messaging</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="CinemaGhar" data-tag="Full Stack Developer" data-desc="MERN-stack movie booking platform with auth, showtime listings, and ticket reservation, pulling real listings from the TMDB API.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">CinemaGhar</span><span class="folder-result"></span><span class="folder-summary">MERN movie booking with live TMDB listings</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="ByteBack" data-tag="Frontend Developer" data-desc="Built the React.js frontend for an electronics recycling platform.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">ByteBack</span><span class="folder-result"></span><span class="folder-summary">React frontend for an electronics recycling platform</span>
+              </button>
+              <button type="button" class="folder-btn" data-repo="codewave_StockSphere" data-tag="Frontend Developer" data-readme="ReadME.md" data-desc="Responsive React frontend for AI stock price prediction and real-time market analysis.">
+                <span class="folder-icon" aria-hidden="true"></span><span class="folder-name">StockSphere</span><span class="folder-result"></span><span class="folder-summary">React frontend for AI stock price prediction</span>
+              </button>
             </div>
-            <div class="terminal-body">
+            <div class="projects-reader">
               <div id="readme-content" class="markdown-body">
                 <div class="readme-loading">
-                  <span class="cursor">_</span> fetching README...
+                  <span class="cursor" aria-hidden="true">_</span> fetching README...
                 </div>
               </div>
             </div>
@@ -466,22 +357,16 @@
     <!-- ========== CERTIFICATIONS ========== -->
     <section id="certifications" class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="file-tab">certs.log</span>
-          <h2 class="section-title">Certifications</h2>
-        </div>
+        <h2 class="section-title">Certifications</h2>
         <p class="cert-hint">
           <span class="cert-hint-desktop">Hover a certificate to preview its PDF</span>
           <span class="cert-hint-mobile">Tap "verify ↗" to view certificate credentials</span>
         </p>
         <div class="terminal">
           <div class="terminal-bar">
-            <div class="mac-buttons">
-              <span class="mac-btn close"></span>
-              <span class="mac-btn minimize"></span>
-              <span class="mac-btn expand"></span>
-            </div>
-            <span class="terminal-path">~/hridayanshu/certs.log</span>
+            <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
+            <span class="terminal-title">certs.log</span>
+            <span class="terminal-tool" aria-hidden="true">ls</span>
           </div>
           <div class="terminal-body cert-terminal-body">
             <div class="cert-list">
@@ -589,81 +474,40 @@
     <!-- ========== CONTACT ========== -->
     <section id="contact" class="section">
       <div class="container">
-        <div class="section-header">
-          <span class="file-tab">contact.sh</span>
-          <h2 class="section-title">Contact</h2>
-        </div>
+        <h2 class="section-title">Contact</h2>
         <div class="terminal">
           <div class="terminal-bar">
-            <div class="mac-buttons">
-              <span class="mac-btn close"></span>
-              <span class="mac-btn minimize"></span>
-              <span class="mac-btn expand"></span>
-            </div>
-            <span class="terminal-path">~/hridayanshu/contact.sh</span>
+            <span class="mac-buttons" aria-hidden="true"><span class="mac-btn close"></span><span class="mac-btn minimize"></span><span class="mac-btn expand"></span></span>
+            <span class="terminal-title">contact.sh</span>
+            <span class="terminal-tool" aria-hidden="true">zsh</span>
           </div>
           <div class="terminal-body contact-inner">
-            <p class="contact-sub">
-              For work or collaboration, send me a message.
-            </p>
+            <p class="prompt-line">./contact.sh</p>
+            <p class="contact-sub">For work or collaboration, send me a message.</p>
 
-            <div class="curl-block">
-              <div class="code-block-head">message.sh</div>
-              <div class="curl-body">
-                <p class="curl-line">curl -X POST https://hridayanshuacharya.com.np/contact \</p>
-                <div class="curl-field">
-                  <label class="curl-flag" for="curl-name"><span aria-hidden="true">--name</span><span
-                      class="sr-only">Name</span></label>
-                  <input type="text" id="curl-name" class="curl-input" placeholder="your name" autocomplete="name" />
-                  <span class="curl-slash" aria-hidden="true">\</span>
-                </div>
-                <div class="curl-field">
-                  <label class="curl-flag" for="curl-message"><span aria-hidden="true">--data</span><span
-                      class="sr-only">Message</span></label>
-                  <textarea id="curl-message" class="curl-input" rows="3"
-                    placeholder="say what you're building..." aria-describedby="curl-response"></textarea>
-                </div>
-                <button type="button" class="curl-send" id="curl-send">
-                  <span class="curl-send-prompt">$</span> send request
-                </button>
-                <p class="curl-response" id="curl-response" aria-live="polite"></p>
-              </div>
+            <div class="contact-form">
+              <label class="contact-label" for="contact-name">name</label>
+              <input type="text" id="contact-name" class="contact-input" placeholder="your name" autocomplete="name" />
+              <label class="contact-label" for="contact-message">message</label>
+              <textarea id="contact-message" class="contact-input" rows="3" placeholder="what you're building..."
+                aria-describedby="contact-response"></textarea>
             </div>
+            <button type="button" class="contact-send" id="contact-send">send <span aria-hidden="true">&crarr;</span></button>
+            <p class="contact-response" id="contact-response" aria-live="polite"></p>
 
-            <p class="contact-or">or reach me directly</p>
-
-            <div class="contact-email-row">
-              <a class="contact-email"
-                href="mailto:hridayanshu23@gmail.com">hridayanshu23@gmail.com</a>
+            <p class="contact-reach">
+              <span>or</span>
+              <a href="mailto:hridayanshu23@gmail.com">hridayanshu23@gmail.com</a>
               <button type="button" class="copy-email" id="copy-email-btn" data-email="hridayanshu23@gmail.com"
                 aria-label="Copy email address">copy</button>
-              <span class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></span>
-            </div>
-            <div class="contact-links">
-              <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer" class="contact-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M12 2C6.477 2 2 6.486 2 12.021c0 4.427 2.865 8.184 6.839 9.504.5.093.682-.217.682-.483 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.344-3.369-1.344-.455-1.159-1.11-1.467-1.11-1.467-.908-.621.069-.609.069-.609 1.004.071 1.532 1.033 1.532 1.033.892 1.531 2.341 1.089 2.91.833.091-.647.35-1.089.636-1.339-2.221-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.987 1.029-2.687-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.026A9.56 9.56 0 0 1 12 6.844a9.57 9.57 0 0 1 2.504.338c1.909-1.295 2.747-1.026 2.747-1.026.546 1.378.203 2.397.1 2.65.64.7 1.028 1.594 1.028 2.687 0 3.848-2.338 4.695-4.566 4.943.359.31.679.923.679 1.861 0 1.344-.012 2.428-.012 2.758 0 .268.18.58.688.482A10.024 10.024 0 0 0 22 12.021C22 6.486 17.523 2 12 2Z" />
-                </svg>
-                <span>github</span>
-              </a>
-              <a href="https://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer"
-                class="contact-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
-                  <path
-                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065Zm1.782 13.019H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0Z" />
-                </svg>
-                <span>linkedin</span>
-              </a>
-              <a href="tel:+9779765987179" class="contact-link">
-                <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8"
-                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path
-                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.69 2.8a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.33 1.84.56 2.8.69A2 2 0 0 1 22 16.92Z" />
-                </svg>
-                <span>+977 9765987179</span>
-              </a>
-            </div>
+              <span aria-hidden="true">&middot;</span>
+              <a href="https://github.com/hridayanshu236" target="_blank" rel="noopener noreferrer">github</a>
+              <span aria-hidden="true">&middot;</span>
+              <a href="https://linkedin.com/in/hridayanshu23" target="_blank" rel="noopener noreferrer">linkedin</a>
+              <span aria-hidden="true">&middot;</span>
+              <a href="tel:+9779765987179">+977 9765987179</a>
+            </p>
+            <p class="copy-feedback" id="copy-feedback" role="status" aria-live="polite"></p>
           </div>
         </div>
       </div>
@@ -695,7 +539,7 @@
   <!-- Pinned: marked 15.0.12 is the last release that ships marked.min.js at this path. -->
   <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/dompurify@3.4.16/dist/purify.min.js"></script>
-  <script src="script.js?v=16"></script>
+  <script src="script.js?v=17"></script>
 </body>
 
 </html>
